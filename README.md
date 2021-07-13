@@ -82,6 +82,7 @@ myElement.style.backgroundColor = "red";
 &nbsp;
 #### Exercise 3:
 1. Change background color of **Create** button to *green* using `.style` property
+   
 &nbsp;
 #### Attach events to DOM elements
 Once you retrieve an element using `.querySelector()`, you can attach an event to it. An event is any action that can be performed on that element. For now, we will just use the click event:
