@@ -1,8 +1,9 @@
 # Javascript-Module-2-Todo-Workshop
 
 ### Getting started
-- Fork and Clone this repo.
+Fork and Clone this repo.
 
+&nbsp;
 ### Part-1 Javascript in the browser
 After working on a black screen for few weeks, with the only output of ```console.log``` But JavaScript was not meant to be run in ```console.log``` It was meant to make web pages dynamic. Lots of websites are powered by JavaScript today, and some (like Facebook) cannot function at all without it. It's become that important to the look and feel of the website.
 
@@ -54,7 +55,8 @@ Including large programs directly in HTML documents is often impractical. The `<
 ```
 The script.js file includes a line alert("hello!");, and the result is exactly the same.
 
-##### Exercise 1:
+&nbsp;
+#### Exercise 1:
 1. Look the file `index.html` and `script.js` in the folder ***scripts***
 2. Open `index.html` with the Visual Studio Live Server and See how the alert appears
 3. Right a name in the input `Something to do` and click **Create** button, right know you don't have to understand the code, but, what do you think the code is doing?
@@ -70,8 +72,9 @@ Both `.querySelector()` and `.querySelectorAll()` accept a CSS selector as an in
 ```js
 let elementArray = Array.from(document.querySelectorAll("div"));
 ```
+&nbsp;
 
-##### Exercise 2:
+#### Exercise 2:
 1. Delete all the existing code in `script.js` in the folder ***scripts***
 2. Write code to access **Create** button element using `document.querySelector()`
 3. Log this element using `console.log()`
@@ -81,8 +84,9 @@ The elements returned by document.querySelector have the same properties as a no
 let myElement = document.querySelector("#myElement");
 myElement.style.backgroundColor = "red";
 ```
+&nbsp;
 
-##### Exercise 3:
+#### Exercise 3:
 1. Change background color of **Create** button to *green* using `.style` property
 
 &nbsp;
@@ -97,8 +101,9 @@ function alertSomething() {
 }
 ```
 You will notice in the example that we passed a second argument to `.addEventListener()`. That second argument is the function that we want to invoke when that event has happened.
+&nbsp;
 
-##### Exercise 4:
+#### Exercise 4:
 1. Delete all the existing code in `script.js` in the folder ***scripts***
 2. Write code to access the form with id `#new-todo` using `document.querySelector()`
 3. Add a `submit` event to this form using `.addEventListener()` which will trim the value of the input `Something to do` and log it when you click **Create** button
@@ -110,8 +115,9 @@ document.querySelector('#new-todo').addEventListener('submit', (e) => {
     console.log(text)
 })
 ```
+&nbsp;
 
-##### Exercise 5:
+#### Exercise 5:
 1. Create an empty array called `todos`
 2. In the next line create a function called `createTodo` which takes one paramter named `text`.
 3. This function should add the value of `text` parameter to the `todos` array using `.push()`
@@ -155,8 +161,9 @@ You can then change the text displayed inside elements using the `textContent` p
 ```js
 paragraph.innerText = "How are you?"; // now we can see the text displaying on the screen
 ```
+&nbsp;
 
-##### Exercise 6:
+#### Exercise 6:
 1. Create a function `generateTodoDOM` which will take one parameter `todo`
 2. Create a `label` element and store it into `todoEl` variable using `document.createElement('label')`
 3. Similarly create a `div` element and store it into `containerEl`
@@ -190,8 +197,9 @@ const generateTodoDOM = (todo) => {
 &nbsp;
 In **Exercise 6** we have created a function called `generateTodoDOM` which takes a todo and creates HTML elements with some classes for the respective todo. Although most of the work is done but we still can not see any todo listed on the screen. This is normal since we have not appended any of these elements to **DOM**.
 
+&nbsp;
 
-##### Exercise 7:
+#### Exercise 7:
 1. Create a function `renderTodos` which will take one parameter an array of `todos`
 2. Write code to access `div` with id `'todos'` and store it into `todoList` variable
 3. Remove everything inside this `todoList` using `innerHTML` property
@@ -213,8 +221,9 @@ const renderTodos = (todos) => {
 Now we will be able to see all todos on the screen. Whenever a new todo will be added, we will call this `renderTodos` function with the `todos` array as an argument.
 
 Lets add a message to the screen when there is no todos to show
+&nbsp;
 
-##### Exercise 8:
+#### Exercise 8:
 1. Modify `renderTodos` function using conditional statement to check whether `todos` array is empty.
 2. If its not empty then `generateTodoDOM` for each todo and append them to `todoList`
 3. Else create a `p` element and store it into `messageEl` variable.
