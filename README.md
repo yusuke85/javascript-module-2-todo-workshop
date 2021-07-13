@@ -148,7 +148,7 @@ myElement.appendChild(paragraph); // now the element is added to our view, but i
 ```
 `document.createElement()` accepts as an input any element type. So for example `document.createElement("article")` will create a new article element.
 
-You can then change the text displayed inside elements using the `textContent` property:
+You can then change the text displayed inside elements using the `textContent` or `innerText` property:
 ```js
 paragraph.innerText = "How are you?"; // now we can see the text displaying on the screen
 ```
@@ -238,3 +238,74 @@ const renderTodos = (todos) => {
 
 renderTodos(todos);
 ```
+&nbsp;
+#### Delete todos
+Now that we are able to create new todo items and add them to `todoList`, Let's create a function to remove todo item from `todoList`
+&nbsp;
+#### Exercise 9:
+1. Create a function called `removeTodo` which will take a parameter `todoEl`
+2. Find the index of this `todoEl` in `todos` array using `.findIndex()` and store the index value into `todoIndex` variable
+3. Check whether `todoIndex > -1`, if true then remove the element from `todos` array using `.splice()`
+```js
+const removeTodo = (todoEl) => {
+    const todoIndex = todos.findIndex((todo) => {
+        return todo.toLowerCase() === todoEl.textContent.toLowerCase()
+    })
+    if (todoIndex > -1) {
+        todos.splice(todoIndex, 1)
+    }
+}
+```
+&nbsp;
+Once the `removeTodo` function is created, let's add a delete button with a `click` event to remove todo item from `todoList`
+&nbsp;
+#### Exercise 10:
+1. Modify `generateTodoDOM` function to add a remove button.
+2. Create a `button` element and store it into `removeButton` variable
+3. Assign `'remove'` string to `removeButton` using `textContent`
+4. Add `'button'`, `'button--text'` classes to `removeButton`  
+5. Append `removeButton` to `todoEl`
+6. Add a `click` event to `removeButton` using `.addEventListener()` which will invoke `removeTodo` function with `todoText` as an argument.
+7. Invoke `renderTodos` function as well inside the `click` event handler function to update the list of todos on the screen
+
+```js
+const generateTodoDOM = (todo) => {
+    const todoEl = document.createElement('label')
+    const containerEl = document.createElement('div')
+    const todoText = document.createElement('span')
+
+    // Setup the todo text
+    todoText.textContent = todo
+    containerEl.appendChild(todoText)
+
+    // Setup container
+    todoEl.classList.add('list-item')
+    containerEl.classList.add('list-item__container')
+    todoEl.appendChild(containerEl)
+
+    // Setup the remove button
+    const removeButton = document.createElement('button')
+    removeButton.textContent = 'remove'
+    removeButton.classList.add('button', 'button--text')
+    todoEl.appendChild(removeButton)
+    removeButton.addEventListener('click', () => {
+        removeTodo(todoText)
+        renderTodos(todos)
+    })
+
+    return todoEl
+}
+```
+&nbsp;
+### Part-2 Object Oriented Programming
+When you look at the world around you, what do you see? You see objects. In programming, objects are nothing more than representations of things. In this section you will learn how to manage objects, and arrays of objects.
+##### By the end of this section students should be able to:
+- Define what an object is in Javascript
+- Be able to write code that can use an object to store data
+- Be able to write code that changes the properties of an object
+- Be able to write code that can retrieve data from an object
+- Write and call methods inside Javascript objects
+- Use Objects when contained inside an array
+- Write code that uses objects built-in methods
+- Write code that can iterate through an object
+
