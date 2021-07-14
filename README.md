@@ -1,20 +1,19 @@
 # Javascript-Module-2-Todo-Workshop
 
-### Getting started
-Fork and Clone this repo.
-&nbsp;
-### Part-1 Javascript in the browser
+## Getting started
+* Fork and Clone this repo.
+## Part-1 Javascript in the browser
 After working on a black screen for few weeks, with the only output of ```console.log``` But JavaScript was not meant to be run in ```console.log``` It was meant to make web pages dynamic. Lots of websites are powered by JavaScript today, and some (like Facebook) cannot function at all without it. It's become that important to the look and feel of the website.
 
 Today we will learn how to combine all this javascript knowledge with HTML and CSS in a browser, changing elements dynamically from user actions.
-##### By the end of this section students should be able to:
+#### By the end of this section students should be able to:
 - Define what the DOM is and what it does
 - Use query selectors to retrieve elements from the DOM
 - Use event listeners to respond to events that happen on the DOM
 - Create DOM elements using JavaScript and add them to the DOM
 - Manipulate DOM elements using JavaScript to change their properties
-&nbsp;
-#### The DOM
+
+### The DOM
 Your webpages are made up of a bunch of HTML elements, nested within each other (parents and children). But JavaScript doesn't know about any of that.
 Thankfully, in JavaScript we have access to this "DOM" object (Document Object Model) which is actually a representation of our webpage that JavaScript can work with.
 
@@ -52,13 +51,11 @@ Including large programs directly in HTML documents is often impractical. The `<
 <script src="scripts/script.js"></script>
 ```
 The script.js file includes a line alert("hello!");, and the result is exactly the same.
-&nbsp;
-#### Exercise 1:
+### Exercise 1:
 1. Look the file `index.html` and `script.js` in the folder ***scripts***
 2. Open `index.html` with the Visual Studio Live Server and See how the alert appears
 3. Right a name in the input `Something to do` and click **Create** button, right know you don't have to understand the code, but, what do you think the code is doing?
-&nbsp;
-#### Access DOM elements
+### Access DOM elements
 The DOM offers a lot of useful functions we can use to find elements on the page. Here are some we'll be using today:
 ```js
 document.querySelector("#mainHeader");
@@ -68,23 +65,20 @@ Both `.querySelector()` and `.querySelectorAll()` accept a CSS selector as an in
 ```js
 let elementArray = Array.from(document.querySelectorAll("div"));
 ```
-&nbsp;
-#### Exercise 2:
+### Exercise 2:
 1. Delete all the existing code in `script.js` in the folder ***scripts***
 2. Write code to access **Create** button element using `document.querySelector()`
 3. Log this element using `console.log()`
 
-The elements returned by document.querySelector have the same properties as a normal HTML element: for example, you can get access to their css styles.
+&nbsp;
+The elements returned by `document.querySelector()` have the same properties as a normal HTML element: for example, you can get access to their css styles.
 ```js
 let myElement = document.querySelector("#myElement");
 myElement.style.backgroundColor = "red";
 ```
-&nbsp;
-#### Exercise 3:
+### Exercise 3:
 1. Change background color of **Create** button to *green* using `.style` property
-   
-&nbsp;
-#### Attach events to DOM elements
+### Attach events to DOM elements
 Once you retrieve an element using `.querySelector()`, you can attach an event to it. An event is any action that can be performed on that element. For now, we will just use the click event:
 ```js
 let myButton = document.querySelector("#myButton");
@@ -95,8 +89,7 @@ function alertSomething() {
 }
 ```
 You will notice in the example that we passed a second argument to `.addEventListener()`. That second argument is the function that we want to invoke when that event has happened.
-&nbsp;
-#### Exercise 4:
+### Exercise 4:
 1. Delete all the existing code in `script.js` in the folder ***scripts***
 2. Write code to access the form with id `#new-todo` using `document.querySelector()`
 3. Add a `submit` event to this form using `.addEventListener()` which will trim the value of the input `Something to do` and log it when you click **Create** button
@@ -108,8 +101,7 @@ document.querySelector('#new-todo').addEventListener('submit', (e) => {
     console.log(text)
 })
 ```
-&nbsp;
-#### Exercise 5:
+### Exercise 5:
 1. Create an empty array called `todos`
 2. In the next line create a function called `createTodo` which takes one paramter named `text`.
 3. This function should add the value of `text` parameter to the `todos` array using `.push()`
@@ -140,21 +132,24 @@ document.querySelector('#new-todo').addEventListener('submit', (e) => {
     console.log(todos)
 })
 ```
-&nbsp;
-#### Create and Manipulate DOM elements
+### Create and Manipulate DOM elements
 Using the `document`, you can also create new elements. These elements will not appear until you append them as a child of another element though
+&nbsp;
 ```js
 let paragraph = document.createElement("p"); // here we're just creating it, element is not visible yet
 myElement.appendChild(paragraph); // now the element is added to our view, but it's empty
 ```
+&nbsp;
+
 `document.createElement()` accepts as an input any element type. So for example `document.createElement("article")` will create a new article element.
 
 You can then change the text displayed inside elements using the `textContent` or `innerText` property:
+&nbsp;
 ```js
 paragraph.innerText = "How are you?"; // now we can see the text displaying on the screen
 ```
 &nbsp;
-#### Exercise 6:
+### Exercise 6:
 1. Create a function `generateTodoDOM` which will take one parameter `todo`
 2. Create a `label` element and store it into `todoEl` variable using `document.createElement('label')`
 3. Similarly create a `div` element and store it into `containerEl`
@@ -187,8 +182,7 @@ const generateTodoDOM = (todo) => {
 ```
 &nbsp;
 In **Exercise 6** we have created a function called `generateTodoDOM` which takes a todo and creates HTML elements with some classes for the respective todo. Although most of the work is done but we still can not see any todo listed on the screen. This is normal since we have not appended any of these elements to **DOM**.
-&nbsp;
-#### Exercise 7:
+### Exercise 7:
 1. Create a function `renderTodos` which will take one parameter an array of `todos`
 2. Write code to access `div` with id `'todos'` and store it into `todoList` variable
 3. Remove everything inside this `todoList` using `innerHTML` property
@@ -210,8 +204,7 @@ const renderTodos = (todos) => {
 Now we will be able to see all todos on the screen. Whenever a new todo will be added, we will call this `renderTodos` function with the `todos` array as an argument.
 
 Lets add a message to the screen when there is no todos to show
-&nbsp;
-#### Exercise 8:
+### Exercise 8:
 1. Modify `renderTodos` function using conditional statement to check whether `todos` array is empty.
 2. If its not empty then `generateTodoDOM` for each todo and append them to `todoList`
 3. Else create a `p` element and store it into `messageEl` variable.
@@ -239,11 +232,9 @@ const renderTodos = (todos) => {
 
 renderTodos(todos);
 ```
-&nbsp;
-#### Delete todos
+### Delete todos
 Now that we are able to create new todo items and add them to `todoList`, Let's create a function to remove todo item from `todoList`
-&nbsp;
-#### Exercise 9:
+### Exercise 9:
 1. Create a function called `removeTodo` which will take a parameter `todoEl`
 2. Find the index of this `todoEl` in `todos` array using `.findIndex()` and store the index value into `todoIndex` variable
 3. Check whether `todoIndex > -1`, if true then remove the element from `todos` array using `.splice()`
@@ -259,8 +250,7 @@ const removeTodo = (todoEl) => {
 ```
 &nbsp;
 Once the `removeTodo` function is created, let's add a delete button with a `click` event to remove todo item from `todoList`
-&nbsp;
-#### Exercise 10:
+### Exercise 10:
 1. Modify `generateTodoDOM` function to add a remove button.
 2. Create a `button` element and store it into `removeButton` variable
 3. Assign `'remove'` string to `removeButton` using `textContent`
@@ -298,9 +288,9 @@ const generateTodoDOM = (todo) => {
 }
 ```
 &nbsp;
-### Part-2 Object Oriented Programming
+## Part-2 Object Oriented Programming
 When you look at the world around you, what do you see? You see objects. In programming, objects are nothing more than representations of things. In this section you will learn how to manage objects, and arrays of objects.
-##### By the end of this section students should be able to:
+#### By the end of this section students should be able to:
 - Define what an object is in Javascript
 - Be able to write code that can use an object to store data
 - Be able to write code that changes the properties of an object
