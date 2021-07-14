@@ -1,11 +1,11 @@
-# Javascript-Module-2-Todo-Workshop
+# JavaScript-Module-2-Todo-Workshop
 
 ## Getting started
 * Fork and Clone this repo.
-## Part-1 Javascript in the browser
+## Part-1 JavaScript in the browser
 After working on a black screen for few weeks, with the only output of ```console.log``` But JavaScript was not meant to be run in ```console.log``` It was meant to make web pages dynamic. Lots of websites are powered by JavaScript today, and some (like Facebook) cannot function at all without it. It's become that important to the look and feel of the website.
 
-Today we will learn how to combine all this javascript knowledge with HTML and CSS in a browser, changing elements dynamically from user actions.
+Today we will learn how to combine all this JavaScript knowledge with HTML and CSS in a browser, changing elements dynamically from user actions.
 #### By the end of this section students should be able to:
 - Define what the DOM is and what it does
 - Use query selectors to retrieve elements from the DOM
@@ -38,7 +38,7 @@ This is how we would represent the document hierarchy above as a tree of nodes:
 
 <img src="/images/dom.png" />
 
-But how can we combine HTML and Javascript? The `<script>` tag allows us to include a piece of JavaScript in a HTML document.
+But how can we combine HTML and JavaScript? The `<script>` tag allows us to include a piece of JavaScript in a HTML document.
 ```html
 <script>
     alert("hello!");
@@ -291,12 +291,178 @@ const generateTodoDOM = (todo) => {
 ## Part-2 Object Oriented Programming
 When you look at the world around you, what do you see? You see objects. In programming, objects are nothing more than representations of things. In this section you will learn how to manage objects, and arrays of objects.
 #### By the end of this section students should be able to:
-- Define what an object is in Javascript
+- Define what an object is in JavaScript
 - Be able to write code that can use an object to store data
 - Be able to write code that changes the properties of an object
 - Be able to write code that can retrieve data from an object
-- Write and call methods inside Javascript objects
+- Write and call methods inside JavaScript objects
 - Use Objects when contained inside an array
 - Write code that uses objects built-in methods
 - Write code that can iterate through an object
+- Define what a Class is in JavaScript
+- Define what is Inheritance in JavaScript
+### Object Basics
+###### [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics#object_basics)
+An object is a collection of related data and/or functionality (which usually consists of several variables and functions — which are called properties and methods when they are inside objects.) Let's work through an example to understand what they look like.
+
+As with many things in JavaScript, creating an object often begins with defining and initializing a variable. During this section we will work in `oop.js` file inside `scripts` folder, write the following code and run in the terminal using `node`:
+```js
+const person = {};
+console.log(person)
+console.log(typeof(person))
+```
+Congratulations, you've just created your first object. Job done! But this is an empty object, so we can't really do much with it. Let's update the JavaScript object in our file to look like this:
+```js
+const person = {
+  name: ['Bob', 'Smith'],
+  age: 32,
+  gender: 'male',
+  interests: ['music', 'skiing'],
+
+  bio: function() {
+    console.log(this.name[0] + ' ' + this.name[1] + ' is ' + this.age + ' years old. He likes ' + this.interests[0] + ' and ' + this.interests[1] + '.');
+  },
+
+  greeting: function() {
+    console.log('Hi! I\'m ' + this.name[0] + '.');
+  }
+};
+```
+After adding all this code to `person` object, add the following code below this object and run `oop.js` file in the terminal using `node`:
+```js
+console.log(person.name)
+console.log(person.name[0])
+console.log(person.age)
+console.log(person.interests[1])
+person.bio()
+person.greeting()
+```
+You have now got some data and functionality inside your object, and are now able to access them with some nice simple syntax!
+
+So what is going on here? Well, an object is made up of multiple members, each of which has a name (e.g. `name` and `age` above), and a value (e.g. `['Bob', 'Smith']` and `32`). Each name/value pair must be separated by a comma, and the name and value in each case are separated by a colon. The syntax always follows this pattern:
+```js
+const objectName = {
+  member1Name: member1Value,
+  member2Name: member2Value,
+  member3Name: member3Value
+};
+```
+The value of an object member can be pretty much anything — in our person object we've got a string, a number, two arrays, and two functions. The first four items are data items, and are referred to as the object's **properties**. The last two items are functions that allow the object to do something with that data, and are referred to as the object's **methods**.
+
+An object like this is referred to as an **object literal** — we've literally written out the object contents as we've come to create it. This is in contrast to objects instantiated from classes, which we'll look at later on.
+
+It is very common to create an object using an object literal when you want to transfer a series of structured, related data items in some manner, for example sending a request to the server to be put into a database. Sending a single object is much more efficient than sending several items individually, and it is easier to work with than an array, when you want to identify individual items by name.
+### Dot notation
+Above, you accessed the object's properties and methods using **dot notation**. The object name (person) acts as the **namespace** — it must be entered first to access anything **encapsulated** inside the object. Next you write a dot, then the item you want to access — this can be the name of a simple property, an item of an array property, or a call to one of the object's methods, for example:
+```js
+person.age
+person.interests[1]
+person.bio()
+```
+#### Sub-namespaces
+It is even possible to make the value of an object member another object. For example, try changing the name member from
+```js
+name: ['Bob', 'Smith'],
+```
+to
+```js
+name : {
+  first: 'Bob',
+  last: 'Smith'
+},
+```
+Here we are effectively creating a **sub-namespace**. This sounds complex, but really it's not — to access these items you just need to chain the extra step onto the end with another dot. Replace previous `console.log()` statements with these and run it in terminal using `node`:
+```js
+console.log(person.name.first)
+console.log(person.name.last)
+```
+**Important:** At this point you'll also need to go through your method code and change any instances of
+```js
+name[0]
+name[1]
+```
+to
+```js
+name.first
+name.last
+```
+Otherwise your methods will no longer work.
+### Bracket notation
+There is another way to access object properties — using bracket notation. Instead of using these:
+```js
+person.age
+person.name.first
+```
+You can use
+```js
+person['age']
+person['name']['first']
+```
+This looks very similar to how you access the items in an array, and it is basically the same thing — instead of using an index number to select an item, you are using the name associated with each member's value. It is no wonder that objects are sometimes called **associative arrays** — they map strings to values in the same way that arrays map numbers (indices) to values.
+### Setting object members
+So far we've only looked at retrieving (or **getting**) object members — you can also **set** (update) the value of object members by declaring the member you want to set (using dot or bracket notation), like this:
+```js
+person.age = 45;
+person['name']['last'] = 'Cratchit';
+```
+Try entering the above lines, and then getting the members again to see how they've changed, like so:
+```js
+console.log(person.age)
+console.log(person['name']['last'])
+```
+Setting members doesn't just stop at updating the values of existing properties and methods; you can also create completely new members. Try these:
+```js
+person['eyes'] = 'hazel';
+person.farewell = function() { console.log("Bye everybody!"); }
+```
+You can now test out your new members:
+```js
+console.log(person['eyes'])
+person.farewell()
+```
+One useful aspect of bracket notation is that it can be used to set not only member values dynamically, but member names too. Let's say we wanted users to be able to store custom value types in their people data, by typing the member name and value into two text inputs. We could get those values like this:
+```js
+let myDataName = nameInput.value;
+let myDataValue = nameValue.value;
+```
+We could then add this new member name and value to the `person` object like this:
+```js
+person[myDataName] = myDataValue;
+```
+To test this, try adding the following lines into your code, just below the closing curly brace of the `person` object:
+```js
+let myDataName = 'height';
+let myDataValue = '1.75m';
+person[myDataName] = myDataValue;
+console.log(person.height);
+```
+Now try saving and running it in terminal using `node`
+
+**Note:** Adding a property to an object using the method above isn't possible with dot notation, which can only accept a literal member name, not a variable value pointing to a name.
+### What is "this"?
+You may have noticed something slightly strange in our methods. Look at this one for example:
+```js
+greeting: function() {
+  console.log('Hi! I\'m ' + this.name.first + '.');
+}
+```
+You are probably wondering what "this" is. The `this` keyword refers to the current object the code is being written inside — so in this case `this` is equivalent to `person`. So why not just write `person` instead? As you'll see in the following sections of **Object-oriented JavaScript**, when we start creating constructors and so on, `this` is very useful — it always ensures that the correct values are used when a member's context changes (for example, two different person object instances may have different names, but we want to use their own name when saying their greeting).
+
+Let's illustrate what we mean with a simplified pair of person objects:
+```js
+const person1 = {
+  name: 'Chris',
+  greeting: function() {
+    console.log('Hi! I\'m ' + this.name + '.');
+  }
+}
+
+const person2 = {
+  name: 'Deepti',
+  greeting: function() {
+    console.log('Hi! I\'m ' + this.name + '.');
+  }
+}
+```
+In this case, `person1.greeting()` outputs **"Hi! I'm Chris."**; `person2.greeting()` on the other hand outputs **"Hi! I'm Deepti."**, even though the method's code is exactly the same in each case. As we said earlier, `this` is equal to the object the code is inside — this isn't hugely useful when you are writing out object literals by hand, but it really comes into its own when you are dynamically generating objects (for example using constructors). It will all become clearer later on.
 
