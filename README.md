@@ -642,3 +642,106 @@ const removeTodo = (title) => {
     }
 }
 ```
+### Filter Todos
+Let's create some filters to search todos by title and/or by completed status
+### Exercise 14:
+1. Create a `filters` object by using object literal `{...}`
+2. Add `searchTitle` property with value empty string
+3. Add `finished`, `unfinished` properties with value `false`
+```js
+const filters = {
+    searchTitle: '',
+    finished: false,
+    unfinished: false
+}
+```
+Let's create a function which will modify the `filters` object when filters are applied
+### Exercise 15:
+1. Create `setFilters` function with one parameter `updates` which is an object
+2. Check whether `updates` object contains a property `searchTitle` of type `string`, if yes then set `filters.searchTitle = updates.searchTitle`
+3. Similarly check whether `updates` object contains a property `finished` of type `boolean`, if yes then set `filters.finished = updates.finished`
+4. Repeat step 3. for `unfinished` property
+```js
+const setFilters = (updates) => {
+    if (typeof updates.searchTitle === 'string') {
+        filters.searchTitle = updates.searchTitle
+    }
+    if (typeof updates.finished === 'boolean') {
+        filters.finished = updates.finished
+    }
+    if (typeof updates.unfinished === 'boolean') {
+        filters.unfinished = updates.unfinished
+    }
+}
+```
+Now let's add event listeners to HTML elements to set filters using `setFilters` function when search input is provided and/or finished/unfinished checkboxes are checked/unchecked
+### Exercise 16:
+1. Add `input` event to input element with id `search-text` by using `.addEventListener()`
+2. Inside callback function
+   2.1 Invoke `setFilters` function with an object as an argument with property `searchTitle` and property's value equal to `e.target.value`
+   2.2 Invoke `renderTodos` function to update the view on the screen
+3. Add `change` event to input element with id `finished` by using `.addEventListener()`
+4. Inside callback function
+   4.1 Invoke `setFilters` function with an object as an argument with property `finished` and property's value equal to `e.target.checked`
+   4.2 Invoke `renderTodos` function to update the view on the screen
+5. Repeat step 3. and 4. for input element with id `unfinished`
+```js
+document.querySelector('#search-text').addEventListener('input', (e) => {
+    setFilters({
+        searchTitle: e.target.value
+    })
+    renderTodos(todos)
+})
+
+document.querySelector('#finished').addEventListener('change', (e) => {
+    setFilters({
+        finished: e.target.checked
+    })
+    renderTodos(todos)
+})
+
+document.querySelector('#unfinished').addEventListener('change', (e) => {
+    setFilters({
+        unfinished: e.target.checked
+    })
+    renderTodos(todos)
+})
+```
+&nbsp;
+We have successfully created `filters` object and `setFilters` function and added event listeners to update `filters` object. The last step is to apply these filters while rendering Todos on the screen. To achieve that we need to modify `renderTodos` function and then our application will be fully functional.
+### Exercise 17:
+1. Modify `renderTodos` function to filter `todos` array by using `.filter()` and checking for each todo whether `todo.title` includes `filters.searchTitle`
+2. Create `filteredTodos` variable and store the result of step 1. in it
+3. Using conditional to check whether `filters.finished && filters.unfinished` is true, if yes then do nothing
+4. Else if `filters.finished` is true, then filter `filteredTodos` array using `.filter()` for todo's which are completed and reassign the result to `filteredTodos`
+5. Repeat step 4. for `filters.unfinished`
+6. Replace `todos` array with `filteredTodos` array in the rest of the code inside `renderTodos` function
+
+```js
+// Render application todos based on filters
+const renderTodos = (todos) => {
+    // filtered Todos
+    let filteredTodos = todos.filter((todo) => todo.title.toLowerCase().includes(filters.searchTitle.toLowerCase()))
+    if(filters.finished && filters.unfinished) {
+      // do nothing
+    } else if(filters.finished) {
+      filteredTodos = filteredTodos.filter((todo) => todo.completed)
+    } else if(filters.unfinished) {
+      filteredTodos = filteredTodos.filter((todo) => !todo.completed)
+    }
+    
+    const todoList = document.querySelector('#todos')
+    todoList.innerHTML = ''
+
+    if (filteredTodos.length > 0) {
+        filteredTodos.forEach((todo) => {
+            todoList.appendChild(generateTodoDOM(todo))
+        })
+    } else {
+        const messageEl = document.createElement('p')
+        messageEl.classList.add('empty-message')
+        messageEl.textContent = 'There are no todos to show'
+        todoList.appendChild(messageEl)
+    }
+}
+```
