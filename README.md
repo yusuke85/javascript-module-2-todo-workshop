@@ -7,12 +7,28 @@ After working on a black screen for few weeks, with the only output of ```consol
 
 Today we will learn how to combine all this JavaScript knowledge with HTML and CSS in a browser, changing elements dynamically from user actions.
 #### By the end of this section students should be able to:
+- Differences between Node.js and the Browser
 - Define what the DOM is and what it does
 - Use query selectors to retrieve elements from the DOM
 - Use event listeners to respond to events that happen on the DOM
 - Create DOM elements using JavaScript and add them to the DOM
 - Manipulate DOM elements using JavaScript to change their properties
+### Node.js vs Browser
+Both the browser and Node.js use JavaScript as their programming language.
 
+Building apps that run in the browser is a completely different thing than building a Node.js application.
+
+Despite the fact that it's always JavaScript, there are some key differences that make the experience radically different.
+
+1. **Full user-level system access.**
+This is one of the most exciting things about node.js. Unlike the browser where Javascript is sandboxed for your safety, node.js has full access to the system like any other native application. This means you can read and write directly to/from the file system, have unrestricted access to the network, can execute software and more. This means writing full desktop software is possible with node.js even including a UI through modules like electron. This means that javascript ran through node.js needs to be treated with the same level of caution as running C++, java, or any other language directly on your system. Never run untrusted javascript in node.js.
+&nbsp;
+2. **Global instead of Window**
+In the browser, most of the time what you are doing is interacting with the DOM, or other Web Platform APIs like Cookies. Those do not exist in Node.js, of course. You don't have the `document`, `window` and all the other objects that are provided by the browser.
+&nbsp;
+3. **CommonJS**
+Another difference is that Node.js uses the CommonJS module system, while in the browser we are starting to see the ES Modules standard being implemented.
+In practice, this means that for the time being you use `require()` in Node.js and `import` in the browser.
 ### The DOM
 Your webpages are made up of a bunch of HTML elements, nested within each other (parents and children). But JavaScript doesn't know about any of that.
 Thankfully, in JavaScript we have access to this "DOM" object (Document Object Model) which is actually a representation of our webpage that JavaScript can work with.
