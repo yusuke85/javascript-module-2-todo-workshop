@@ -122,7 +122,6 @@ const createTodo = (text) => {
 document.querySelector('#new-todo').addEventListener('submit', (e) => {
     e.preventDefault()
     const text = e.target.elements.text.value.trim()
-    console.log(text)
 
     if (text.length > 0) {
         createTodo(text)
@@ -288,7 +287,7 @@ const generateTodoDOM = (todo) => {
 }
 ```
 &nbsp;
-## Part-2 Object Oriented Programming
+## Part-2 Objects in JavaScript
 When you look at the world around you, what do you see? You see objects. In programming, objects are nothing more than representations of things. In this section you will learn how to manage objects, and arrays of objects.
 #### By the end of this section students should be able to:
 - Define what an object is in JavaScript
@@ -299,8 +298,6 @@ When you look at the world around you, what do you see? You see objects. In prog
 - Use Objects when contained inside an array
 - Write code that uses objects built-in methods
 - Write code that can iterate through an object
-- Define what a Class is in JavaScript
-- Define what is Inheritance in JavaScript
 ### Object Basics
 ###### [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics#object_basics)
 An object is a collection of related data and/or functionality (which usually consists of several variables and functions — which are called properties and methods when they are inside objects.) Let's work through an example to understand what they look like.
@@ -446,7 +443,7 @@ greeting: function() {
   console.log('Hi! I\'m ' + this.name.first + '.');
 }
 ```
-You are probably wondering what "this" is. The `this` keyword refers to the current object the code is being written inside — so in this case `this` is equivalent to `person`. So why not just write `person` instead? As you'll see in the following sections of **Object-oriented JavaScript**, when we start creating constructors and so on, `this` is very useful — it always ensures that the correct values are used when a member's context changes (for example, two different person object instances may have different names, but we want to use their own name when saying their greeting).
+You are probably wondering what "this" is. The `this` keyword refers to the current object the code is being written inside — so in this case `this` is equivalent to `person`. So why not just write `person` instead? As you'll see in the following section of **Object-oriented JavaScript**, when we start creating constructors and so on, `this` is very useful — it always ensures that the correct values are used when a member's context changes (for example, two different person object instances may have different names, but we want to use their own name when saying their greeting).
 
 Let's illustrate what we mean with a simplified pair of person objects:
 ```js
@@ -465,4 +462,167 @@ const person2 = {
 }
 ```
 In this case, `person1.greeting()` outputs **"Hi! I'm Chris."**; `person2.greeting()` on the other hand outputs **"Hi! I'm Deepti."**, even though the method's code is exactly the same in each case. As we said earlier, `this` is equal to the object the code is inside — this isn't hugely useful when you are writing out object literals by hand, but it really comes into its own when you are dynamically generating objects (for example using constructors). It will all become clearer later on.
+### Object built-in methods
+Since we started JavaScript, we have used `console.log()` to print things to our console.
 
+In JavaScript module I, you learned about array methods like `.map()`, and `.filter()`. These are what we call built-in methods, and they're part of the JavaScript language. Someone else created these methods, and we can use them in our code.
+
+Like arrays, objects have built-in methods that can help us. In this section, we will learn about `Object.keys()` and `Object.values()`.
+#### Object.keys()
+`Object.keys()` returns an array whose elements are strings corresponding to the enumerable properties found directly upon `object`. The ordering of the properties is the same as that given by looping over the properties of the object manually.
+##### Examples:
+```js
+// simple array
+const arr = ['a', 'b', 'c'];
+console.log(Object.keys(arr)); // console: ['0', '1', '2']
+
+// array-like object
+const obj = { 0: 'a', 1: 'b', 2: 'c' };
+console.log(Object.keys(obj)); // console: ['0', '1', '2']
+
+// array-like object with random key ordering
+const anObj = { 100: 'a', 2: 'b', 7: 'c' };
+console.log(Object.keys(anObj)); // console: ['2', '7', '100']
+
+// getFoo is a property which isn't enumerable
+const myObj = Object.create({}, {
+  getFoo: {
+    value: function () { return this.foo; }
+  }
+});
+myObj.foo = 1;
+console.log(Object.keys(myObj)); // console: ['foo']
+```
+#### Object.values()
+`Object.values()` returns an array whose elements are the enumerable property values found on the object. The ordering of the properties is the same as that given by looping over the property values of the object manually.
+##### Examples:
+```js
+const obj = { foo: 'bar', baz: 42 };
+console.log(Object.values(obj)); // ['bar', 42]
+
+// Array-like object
+const arrayLikeObj1 = { 0: 'a', 1: 'b', 2: 'c' };
+console.log(Object.values(arrayLikeObj1 )); // ['a', 'b', 'c']
+
+// Array-like object with random key ordering
+// When using numeric keys, the values are returned in the keys' numerical order
+const arrayLikeObj2 = { 100: 'a', 2: 'b', 7: 'c' };
+console.log(Object.values(arrayLikeObj2 )); // ['b', 'c', 'a']
+
+// getFoo is property which isn't enumerable
+const my_obj = Object.create({}, { getFoo: { value: function() { return this.foo; } } });
+my_obj.foo = 'bar';
+console.log(Object.values(my_obj)); // ['bar']
+
+// non-object argument will be coerced to an object
+console.log(Object.values('foo')); // ['f', 'o', 'o']
+```
+### Loop through an Object
+The `for...in` statement iterates over all enumerable properties of an object that are keyed by strings (ignoring ones keyed by Symbols), including inherited enumerable properties.
+##### Examples:
+```js
+var obj = {a: 1, b: 2, c: 3};
+
+for (const prop in obj) {
+  console.log(`obj.${prop} = ${obj[prop]}`);
+}
+
+// Output:
+// "obj.a = 1"
+// "obj.b = 2"
+// "obj.c = 3"
+```
+&nbsp;
+Now that we know what are Objects in JavaScript and how to work with them. Let's continue with Todo application by creating an Object for each todo item instead of storing them as Strings.
+### Exercise 11:
+1. Modify `createTodo` function
+2. Create an Object with two properties:
+   2.1 `title` which will contain `text` value
+   2.2 And `completed` which is a boolean to represent status of todo item 
+```js
+const createTodo = (text) => {
+    todos.push({
+        title: text,
+        completed: false
+    })
+}
+```
+Since we are not working with Array of strings, we need to change how we generate DOM elements for each todo object and how to render todos on the screen.
+### Exercise 12:
+1. Modify `generateTodoDOM` function with parameter `todoObj` instead of `todo`
+2. First create an `input` element to represent `completed` property of `todoObj` and store it into `checkbox` variable
+3. Set attribute `type = 'checkbox'` of this `input` element by using `.setAttribute('type', 'checkbox')`
+4. Assign `checked` property of `checkbox` equal to `todoObj.completed` property value
+5. Append `checkbox` to `containerEl` by using `.appendChild()`
+   **Note:** It is important in which order you append different element to a parent element. This is why `checkbox` code inside `generateTodoDOM` function comes before rest of the code.
+6. Add a `change` event to `checkbox` by using `.addEventListener()` with a callback function
+7. Inside this callback function invoke `toggleTodo` function with `todoObj.title` as an argument.
+   **Note:** `toggleTodo` function doesn't exist but we will create it in next step 
+9.  Now invoke the `renderTodos()` function inside this callback function to update view on the screen
+10. Change `todoText` content to `todoObj.title` because we are working with an object not a string.
+11. Finally modify `removeButton` button event listener to call `removeTodo` function with `todoObj.title` instead of `todoText` element
+
+
+```js
+const generateTodoDOM = (todoObj) => {
+    const todoEl = document.createElement('label')
+    const containerEl = document.createElement('div')
+    const todoText = document.createElement('span')
+
+    // Setup todo checkbox
+    const checkbox = document.createElement('input')
+    checkbox.setAttribute('type', 'checkbox')
+    checkbox.checked = todoObj.completed
+    containerEl.appendChild(checkbox)
+    checkbox.addEventListener('change', () => {
+        toggleTodo(todoObj.title)
+        renderTodos(todos)
+    })
+
+    // Setup the todo text
+    todoText.textContent = todoObj.title
+    containerEl.appendChild(todoText)
+
+    // Setup container
+    todoEl.classList.add('list-item')
+    containerEl.classList.add('list-item__container')
+    todoEl.appendChild(containerEl)
+
+    // Setup the remove button
+    const removeButton = document.createElement('button')
+    removeButton.textContent = 'remove'
+    removeButton.classList.add('button', 'button--text')
+    todoEl.appendChild(removeButton)
+    removeButton.addEventListener('click', () => {
+        removeTodo(todoObj.title)
+        renderTodos(todos)
+    })
+
+    return todoEl
+}
+```
+Now we need to create `toggleTodo` function with a parameter `title` and update `removeTodo` function as well to accept a parameter `title`
+### Exercise 13:
+1. Create `toggleTodo` function with `title` parameter
+2. Find the todo object with title equal to `title` parameter in `todos` array using `.find()` and store it into `todo` variable
+3. Check whether `todo` exists, if true then change `completed` property value to opposite of what it is
+   **Hint:** `todo.completed = !todo.completed`
+4. Modify `removeTodo` function with a parameter `title` instead of `todoEl`
+5. Modify callback function of `.findIndex()` to compare `todo.title` with `title` parameter since we are working with an array of objects instead of array of strings
+```js
+const toggleTodo = (title) => {
+    const todo = todos.find((todo) => todo.title.toLowerCase() === title.toLowerCase())
+
+    if (todo) {
+        todo.completed = !todo.completed
+    }
+}
+
+const removeTodo = (title) => {
+    const todoIndex = todos.findIndex((todo) => todo.title.toLowerCase() === title.toLowerCase())
+
+    if (todoIndex > -1) {
+        todos.splice(todoIndex, 1)
+    }
+}
+```
