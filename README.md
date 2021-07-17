@@ -116,7 +116,7 @@ document.querySelector('#new-todo').addEventListener('submit', (e) => {
 2. In the next line create a function called `createTodo` which takes one paramter named `text`.
 3. This function should add the value of `text` parameter to the `todos` array using `.push()`
 4. Modify the event created in **Exercise 4** to validate `text` and then call `createTodo` whenever the form is submitted.
-    - **Hint:** Use `createTodo` function inside second parameter of `addEventListener()`
+   - **Hint:** Use `createTodo` function inside second parameter of `addEventListener()`
 5. Clear the value of the input `Something to do` once a new todo is created
 6. Log the todos array.
 
@@ -166,7 +166,7 @@ paragraph.innerText = "How are you?"; // now we can see the text displaying on t
 5. Assign `todo` value to `todoText` using `textContent` property
 6. Once `todoText` has been assigned `todo` value, append it to `containerEl` using `.appendChild()`
 7. Add `'list-item'` class to `todoEl` and `'list-item__container'` class to `containerEl` using `.classList.add()`
-    - **Note:** While it's really easy to change styles directly on elements using the `style` property, it is not usually a good idea to mix JavaScript and CSS. To solve this, we can use the `.classList.add()` or `.classList.remove()` property to set or remove the class for an element instead of changing its styles directly
+   - **Note:** While it's really easy to change styles directly on elements using the `style` property, it is not usually a good idea to mix JavaScript and CSS. To solve this, we can use the `.classList.add()` or `.classList.remove()` property to set or remove the class for an element instead of changing its styles directly
 8. Append `containerEl` to `todoEl` using `.appendChild()` 
 9.  Finally return `todoEl`
 
@@ -195,7 +195,7 @@ In **Exercise 6** we have created a function called `generateTodoDOM` which take
 1. Create a function `renderTodos` which will take one parameter an array of `todos`
 2. Write code to access `div` with id `'todos'` and store it into `todoList` variable
 3. Remove everything inside this `todoList` using `innerHTML` property
-    - **Hint:**: Otherwise we will append items multiple times.
+   - **Hint:**: Otherwise we will append items multiple times.
 4. Create DOM elements for all items of `todos` array by using `forEach` method and `generateTodoDOM` function and append return value of `generateTodoDOM` to `todoList` using `.appendChild()`
 5. Use `renderTodos` function instead of `console.log(todos)` in step 6 of **Exercise 5**.
 
@@ -564,10 +564,10 @@ Since we are not working with Array of strings, we need to change how we generat
 3. Set attribute `type = 'checkbox'` of this `input` element by using `.setAttribute('type', 'checkbox')`
 4. Assign `checked` property of `checkbox` equal to `todoObj.completed` property value
 5. Append `checkbox` to `containerEl` by using `.appendChild()`
-    - **Note:** It is important in which order you append different element to a parent element. This is why `checkbox` code inside `generateTodoDOM` function comes before rest of the code.
+   - **Note:** It is important in which order you append different element to a parent element. This is why `checkbox` code inside `generateTodoDOM` function comes before rest of the code.
 6. Add a `change` event to `checkbox` by using `.addEventListener()` with a callback function
 7. Inside this callback function invoke `toggleTodo` function with `todoObj.title` as an argument.
-    - **Note:** `toggleTodo` function doesn't exist but we will create it in next step 
+   - **Note:** `toggleTodo` function doesn't exist but we will create it in next step 
 9.  Now invoke the `renderTodos()` function inside this callback function to update view on the screen
 10. Change `todoText` content to `todoObj.title` because we are working with an object not a string.
 11. Finally modify `removeButton` button event listener to call `removeTodo` function with `todoObj.title` instead of `todoText` element
@@ -616,7 +616,7 @@ Now we need to create `toggleTodo` function with a parameter `title` and update 
 1. Create `toggleTodo` function with `title` parameter
 2. Find the todo object with title equal to `title` parameter in `todos` array using `.find()` and store it into `todo` variable
 3. Check whether `todo` exists, if true then change `completed` property value to opposite of what it is
-    **Hint:** `todo.completed = !todo.completed`
+   - **Hint:** `todo.completed = !todo.completed`
 4. Modify `removeTodo` function with a parameter `title` instead of `todoEl`
 5. Modify callback function of `.findIndex()` to compare `todo.title` with `title` parameter since we are working with an array of objects instead of array of strings
 ```js
