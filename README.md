@@ -3,7 +3,7 @@
 ## Getting started
 * Fork and Clone this repo.
 ## Part-1 JavaScript in the browser
-After working on a black screen for few weeks, with the only output of ```console.log``` But JavaScript was not meant to be run in ```console.log``` It was meant to make web pages dynamic. Lots of websites are powered by JavaScript today, and some (like Facebook) cannot function at all without it. It's become that important to the look and feel of the website.
+JavaScript is a language which can run in different environments. For few weeks we have been working on a black screen which is **NodeJS**, a runtime environment, which has access to some specific resources such as file system/hard drive, network etc. But JavaScript was not meant to run only in NodeJS environment using `console.log`. It was meant to make web pages dynamic. Lots of websites are powered by JavaScript today, and some (like Facebook) cannot function at all without it. It's become that important to the look and feel of the website.
 
 Today we will learn how to combine all this JavaScript knowledge with HTML and CSS in a browser, changing elements dynamically from user actions.
 #### By the end of this section students should be able to:
@@ -20,15 +20,9 @@ Building apps that run in the browser is a completely different thing than build
 
 Despite the fact that it's always JavaScript, there are some key differences that make the experience radically different.
 
-1. **Full user-level system access.**
-This is one of the most exciting things about node.js. Unlike the browser where Javascript is sandboxed for your safety, node.js has full access to the system like any other native application. This means you can read and write directly to/from the file system, have unrestricted access to the network, can execute software and more. This means writing full desktop software is possible with node.js even including a UI through modules like electron. This means that javascript ran through node.js needs to be treated with the same level of caution as running C++, java, or any other language directly on your system. Never run untrusted javascript in node.js.
+1. **Full user-level system access.** This is one of the most exciting things about NodeJS. Unlike the browser where Javascript runs in **an isolated environment in which potentially unsafe software code can execute** without affecting network resources or local applications. Whereas NodeJS has full access to the system like any other computer application. This means you can read and write directly to/from the file system/ hard drive, have unrestricted access to the network, can execute software and more. This means writing full desktop software is possible with node.js even including a UI (user interface) through modules like electron.
 &nbsp;
-2. **Global instead of Window**
-In the browser, most of the time what you are doing is interacting with the DOM, or other Web Platform APIs like Cookies. Those do not exist in Node.js, of course. You don't have the `document`, `window` and all the other objects that are provided by the browser.
-&nbsp;
-3. **CommonJS**
-Another difference is that Node.js uses the CommonJS module system, while in the browser we are starting to see the ES Modules standard being implemented.
-In practice, this means that for the time being you use `require()` in Node.js and `import` in the browser.
+2. Both NodeJS and Browser have some things in common such as `console.log()`. But in the browser, most of the time what you will be doing is interacting with the **DOM** which does not exist in NodeJS.
 ### The DOM
 Your webpages are made up of a bunch of HTML elements, nested within each other (parents and children). But JavaScript doesn't know about any of that.
 Thankfully, in JavaScript we have access to this "DOM" object (Document Object Model) which is actually a representation of our webpage that JavaScript can work with.
@@ -122,7 +116,7 @@ document.querySelector('#new-todo').addEventListener('submit', (e) => {
 2. In the next line create a function called `createTodo` which takes one paramter named `text`.
 3. This function should add the value of `text` parameter to the `todos` array using `.push()`
 4. Modify the event created in **Exercise 4** to validate `text` and then call `createTodo` whenever the form is submitted.
-   **Hint** Use `createTodo` function inside second parameter of `addEventListener()`
+    **Hint** Use `createTodo` function inside second parameter of `addEventListener()`
 5. Clear the value of the input `Something to do` once a new todo is created
 6. Log the todos array.
 
@@ -172,7 +166,7 @@ paragraph.innerText = "How are you?"; // now we can see the text displaying on t
 5. Assign `todo` value to `todoText` using `textContent` property
 6. Once `todoText` has been assigned `todo` value, append it to `containerEl` using `.appendChild()`
 7. Add `'list-item'` class to `todoEl` and `'list-item__container'` class to `containerEl` using `.classList.add()`
-   **Note:** While it's really easy to change styles directly on elements using the `style` property, it is not usually a good idea to mix JavaScript and CSS. To solve this, we can use the `.classList.add()` or `.classList.remove()` property to set or remove the class for an element instead of changing its styles directly
+    **Note:** While it's really easy to change styles directly on elements using the `style` property, it is not usually a good idea to mix JavaScript and CSS. To solve this, we can use the `.classList.add()` or `.classList.remove()` property to set or remove the class for an element instead of changing its styles directly
 8. Append `containerEl` to `todoEl` using `.appendChild()` 
 9.  Finally return `todoEl`
 
@@ -201,7 +195,7 @@ In **Exercise 6** we have created a function called `generateTodoDOM` which take
 1. Create a function `renderTodos` which will take one parameter an array of `todos`
 2. Write code to access `div` with id `'todos'` and store it into `todoList` variable
 3. Remove everything inside this `todoList` using `innerHTML` property
-   **Hint**: Otherwise we will append items multiple times.
+    **Hint**: Otherwise we will append items multiple times.
 4. Create DOM elements for all items of `todos` array by using `forEach` method and `generateTodoDOM` function and append return value of `generateTodoDOM` to `todoList` using `.appendChild()`
 5. Use `renderTodos` function instead of `console.log(todos)` in step 6 of **Exercise 5**.
 
@@ -223,9 +217,9 @@ Lets add a message to the screen when there is no todos to show
 1. Modify `renderTodos` function using conditional statement to check whether `todos` array is empty.
 2. If its not empty then `generateTodoDOM` for each todo and append them to `todoList`
 3. Else create a `p` element and store it into `messageEl` variable.
-   3.1 Add `'empty-message'` class to `messageEl`  
-   3.2 Assign `'There are no todos to show'` string to `messageEl` using `textContent`
-   3.3 Append `messageEl` to `todoList`
+    1. Add `'empty-message'` class to `messageEl`  
+    2. Assign `'There are no todos to show'` string to `messageEl` using `textContent`
+    3. Append `messageEl` to `todoList`
 4. Invoke `renderTodos` function with `todos` array as an argument at the end of `script.js` file
 
 ```js
@@ -553,8 +547,8 @@ Now that we know what are Objects in JavaScript and how to work with them. Let's
 ### Exercise 11:
 1. Modify `createTodo` function
 2. Create an Object with two properties:
-   2.1 `title` which will contain `text` value
-   2.2 And `completed` which is a boolean to represent status of todo item 
+    1. `title` which will contain `text` value
+    2. And `completed` which is a boolean to represent status of todo item 
 ```js
 const createTodo = (text) => {
     todos.push({
@@ -570,10 +564,10 @@ Since we are not working with Array of strings, we need to change how we generat
 3. Set attribute `type = 'checkbox'` of this `input` element by using `.setAttribute('type', 'checkbox')`
 4. Assign `checked` property of `checkbox` equal to `todoObj.completed` property value
 5. Append `checkbox` to `containerEl` by using `.appendChild()`
-   **Note:** It is important in which order you append different element to a parent element. This is why `checkbox` code inside `generateTodoDOM` function comes before rest of the code.
+    **Note:** It is important in which order you append different element to a parent element. This is why `checkbox` code inside `generateTodoDOM` function comes before rest of the code.
 6. Add a `change` event to `checkbox` by using `.addEventListener()` with a callback function
 7. Inside this callback function invoke `toggleTodo` function with `todoObj.title` as an argument.
-   **Note:** `toggleTodo` function doesn't exist but we will create it in next step 
+    **Note:** `toggleTodo` function doesn't exist but we will create it in next step 
 9.  Now invoke the `renderTodos()` function inside this callback function to update view on the screen
 10. Change `todoText` content to `todoObj.title` because we are working with an object not a string.
 11. Finally modify `removeButton` button event listener to call `removeTodo` function with `todoObj.title` instead of `todoText` element
@@ -622,7 +616,7 @@ Now we need to create `toggleTodo` function with a parameter `title` and update 
 1. Create `toggleTodo` function with `title` parameter
 2. Find the todo object with title equal to `title` parameter in `todos` array using `.find()` and store it into `todo` variable
 3. Check whether `todo` exists, if true then change `completed` property value to opposite of what it is
-   **Hint:** `todo.completed = !todo.completed`
+    **Hint:** `todo.completed = !todo.completed`
 4. Modify `removeTodo` function with a parameter `title` instead of `todoEl`
 5. Modify callback function of `.findIndex()` to compare `todo.title` with `title` parameter since we are working with an array of objects instead of array of strings
 ```js
@@ -678,12 +672,12 @@ Now let's add event listeners to HTML elements to set filters using `setFilters`
 ### Exercise 16:
 1. Add `input` event to input element with id `search-text` by using `.addEventListener()`
 2. Inside callback function
-   2.1 Invoke `setFilters` function with an object as an argument with property `searchTitle` and property's value equal to `e.target.value`
-   2.2 Invoke `renderTodos` function to update the view on the screen
+    1. Invoke `setFilters` function with an object as an argument with property `searchTitle` and property's value equal to `e.target.value`
+    2. Invoke `renderTodos` function to update the view on the screen
 3. Add `change` event to input element with id `finished` by using `.addEventListener()`
 4. Inside callback function
-   4.1 Invoke `setFilters` function with an object as an argument with property `finished` and property's value equal to `e.target.checked`
-   4.2 Invoke `renderTodos` function to update the view on the screen
+    1. Invoke `setFilters` function with an object as an argument with property `finished` and property's value equal to `e.target.checked`
+    2. Invoke `renderTodos` function to update the view on the screen
 5. Repeat step 3. and 4. for input element with id `unfinished`
 ```js
 document.querySelector('#search-text').addEventListener('input', (e) => {
