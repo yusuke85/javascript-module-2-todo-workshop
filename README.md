@@ -952,5 +952,81 @@ sessionStorage.removeItem("name");
 All other methods and properties of local storage can be applied to session storage.
 ***
 ### Todo App Local Storage Implementation
+Now we will begin by creating two functions for saving `todos` to localStorage and fetching `todos` from localStorage
 ### Exercise 18:
-1. To be done
+1. Create `saveTodosToLocalStorage` function
+2. Inside the function write code to save `todos` array in JSON format with a key named `todos` using `localStorage.setItem()`
+```js
+const saveTodosToLocalStorage = () => {
+    localStorage.setItem('todos', JSON.stringify(todos))
+}
+```
+### Exercise 19:
+1. Create `fetchTodosFromLocalStorage` function
+2. Get `todos` from localStorage using `localStorage.getItem()` and save it into `todosJSON` variable
+3. Check whether `todosJSON` isn't a empty string, if yes then parse `todosJSON` using `JSON.parse()` and assign it to `todos` array
+4. Else assign `todos` equal to an empty array
+```js
+const fetchTodosFromLocalStorage = () => {
+    const todosJSON = localStorage.getItem('todos')
+
+    if (todosJSON) {
+        todos = JSON.parse(todosJSON)
+    } else {
+        todos = []
+    }
+}
+```
+Now we have both functions ready and we can use these functions to update local storage in the browser whenever we make changes to `todos` array.
+
+We will have to use `saveTodosToLocalStorage` function when we create a new todo or when we remove a todo or when we toggle the completed property of a todo
+### Exercise 20:
+1. Inside `createTodo` function invoke `saveTodosToLocalStorage` function at the end.
+2. Similarly invoke `saveTodosToLocalStorage` function inside `toggleTodo` and `removeTodo` functions
+   - **Hint:** Only when you modify `todos` array, that means inside the conditional statements
+```js
+const createTodo = (text) => {
+    todos.push({
+        title: text,
+        completed: false
+    })
+    saveTodosToLocalStorage();
+}
+
+const toggleTodo = (title) => {
+    const todo = todos.find((todo) => todo.title.toLowerCase() === title.toLowerCase())
+
+    if (todo) {
+        todo.completed = !todo.completed
+        saveTodosToLocalStorage();
+    }
+}
+
+const removeTodo = (title) => {
+    const todoIndex = todos.findIndex((todo) => todo.title.toLowerCase() === title.toLowerCase())
+
+    if (todoIndex > -1) {
+        todos.splice(todoIndex, 1)
+        saveTodosToLocalStorage();
+    }
+}
+```
+Now last step is to fetch/load `todos` from local storage using `fetchTodosFromLocalStorage` function. We will fetch todos in two situations, once when we start up the application and other when there are any changes in the local storage.
+### Exercise 21:
+1. Invoke `fetchTodosFromLocalStorage` function at the end of the file before invoking `renderTodos` function which we did in Exercise 8
+2. Create a `storage` event listener on browser's in-built `window` object using `window.addEventListener()`
+   - **Note:** The storage event of the Window interface fires when a storage area (localStorage) has been modified in the context of another document.
+3. Add a callback function with one paramenter `event` or `e`
+4. Check whether `e.key === 'todos'`, if yes then fetch todos by invoking `fetchTodosFromLocalStorage` function and render todos by invoking `renderTodos` function
+
+```js
+window.addEventListener('storage', (e) => {
+    if (e.key === 'todos') {
+        fetchTodosFromLocalStorage()
+        renderTodos(todos)
+    }
+})
+
+fetchTodosFromLocalStorage()
+renderTodos(todos)
+```
