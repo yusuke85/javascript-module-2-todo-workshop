@@ -3,12 +3,12 @@
 ## Getting started
 * Fork and Clone this repo.
 ## Table of content
-####  [Part-1 JavaScript in the browser](#part-1-javascript-in-the-browser)
+- **[Part-1 JavaScript in the browser](#part-1-javascript-in-the-browser)**
 - [Node.js vs Browser](#nodejs-vs-browser)
 - [The DOM](#the-dom)
 - [Attach events to DOM elements](#attach-events-to-dom-elements)
 - [Create and Manipulate DOM elements](#create-and-manipulate-dom-elements)
-#### [Part-2 Objects in JavaScript](#part-2-objects-in-javascript)
+- **[Part-2 Objects in JavaScript](#part-2-objects-in-javascript)**
 - [Object Basics](#object-basics)
 - [Dot notation](#dot-notation)
 - [Bracket notation](#bracket-notation)
@@ -16,7 +16,7 @@
 - [What is "this"?](#what-is-this)
 - [Object built-in methods](#object-built-in-methods)
 - [Loop through an Object](#loop-through-an-object)
-#### [Part-3 Introduction to APIs](#part-3-introduction-to-apis)
+- **[Part-3 Introduction to APIs](#part-3-introduction-to-apis)**
 - [A Frame of Reference](#a-frame-of-reference)
 - [What an API is and Why it's valuable](#what-an-api-is-and-why-its-valuable)
 - [How an API is used](#how-an-api-is-used)
