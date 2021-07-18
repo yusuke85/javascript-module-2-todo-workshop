@@ -46,7 +46,7 @@ Here is an example of how the DOM might look like:
 
 This is how we would represent the document hierarchy above as a tree of nodes:
 
-<img src="/images/dom.png" />
+![DOM hierarchy](images/dom.png)
 
 But how can we combine HTML and JavaScript? The `<script>` tag allows us to include a piece of JavaScript in a HTML document.
 ```html
@@ -739,3 +739,193 @@ const renderTodos = (todos) => {
     }
 }
 ```
+## Part-3 Introduction to APIs
+In this section, we start by looking at some fundamental concepts around APIs. We define what an API is, where it lives, and give a high level picture of how one is used.
+### A Frame of Reference
+When talking about APIs, a lot of the conversation focuses on abstract concepts. To anchor ourselves, let's start with something that is physical: the server. A server is nothing more than a big computer. It has all the same parts as the laptop or desktop you use for work, it’s just faster and more powerful. Typically, servers don't have a monitor, keyboard, or mouse, which makes them look unapproachable. The reality is that IT folks connect to them remotely — think remote desktop-style — to work on them.
+
+Servers are used for all sorts of things. Some store data; others send email. The kind people interact with the most are web servers. These are the servers that give you a web page when you visit a website. To better understand how that works, here's a simple analogy:
+>In the same way that a program like Solitaire waits for you to click on a card to do something, a web server runs a program that waits for a person to ask it for a web page.
+
+There's really nothing magical or spectacular about it. A software developer writes a program, copies it to a server, and the server runs the program continuously.
+### What an API is and Why it's valuable
+Websites are designed to cater to people's strengths. Humans have an incredible ability to take visual information, combine it with our experiences to derive meaning, and then act on that meaning. It's why you can look at a form on a website and know that the little box with the phrase "First Name" above it means you are supposed to type in the word you use to informally identify yourself.
+
+Yet, what happens when you face a very time-intensive task, like copying the contact info for a thousand customers from one site to another? You would love to delegate this work to a computer so it can be done quickly and accurately. Unfortunately, the characteristics that make websites optimal for humans make them difficult for computers to use.
+
+The solution is an API. An API is the tool that makes a website's data digestible for a computer. Through it, a computer can view and edit data, just like a person can by loading pages and submitting forms.
+
+![Communicating with a server](images/communicating%20with%20a%20server.jpeg)
+
+Making data easier to work with is good because it means people can write software to automate tedious and labor-intensive tasks. What might take a human hours to accomplish can take a computer seconds through an API.
+### How an API is used
+When two systems (websites, desktops, smartphones) link up through an API, we say they are "integrated." In an integration, you have two sides, each with a special name. One side we have already talked about: the server. This is the side that actually provides the API. It helps to remember that the API is simply another program running on the server. It may be part of the same program that handles web traffic, or it can be a completely separate one. In either case, it is sitting, waiting for others to ask it for data.
+
+The other side is the "client." This is a separate program that knows what data is available through the API and can manipulate it, typically at the request of a user. A great example is a smartphone app that syncs with a website. When you push the refresh button in your app, it talks to a server via an API and fetches the newest info.
+
+The same principle applies to websites that are integrated. When one site pulls in data from the other, the site providing the data is acting as the server, and the site fetching the data is the client.
+### Representing Data
+When sharing data with people, the possibilities for how to display the information is limited only by human imagination.
+
+Let's take an example of pizza parlor—how might they format their menu? It could be a text-only, bulleted list; it could be a series of photos with captions; or it could even be only photos, which foreign patrons could point at to place their order.
+>A well-designed format is dictated by what makes the information the easiest for the intended audience to understand.
+
+The same principle applies when sharing data between computers. One computer has to put the data in a format that the other will understand. Generally, this means some kind of text format. The most common format found in modern APIs is JSON (JavaScript Object Notation).
+### JSON
+- JSON is a lightweight, human-readable data-interchange format.
+- JSON is used to store a collection of name/key-value pairs or an ordered list of values.
+- JSON is useful for serializing<sup>1</sup> objects, and arrays for transmitting over the network.
+- All JSON files have the extension `.json`.
+
+>Serialization is **the process of converting an object into a stream of bytes to store the object or transmit it to memory**, a database, or a file. Its main purpose is to save the state of an object in order to be able to recreate it when needed.
+
+Many new APIs have adopted JSON as a format because it's built on the popular Javascript programming language, which is ubiquitous on the web and usable on both the front- and back-end of a web app or service. JSON is a very simple format that has two pieces: keys and values. Keys represent an attribute about the object being described. A pizza order can be an object. It has attributes (keys), such as crust type, toppings, and order status. These attributes have corresponding values (thick crust, pepperoni, and out-for-delivery).
+
+Let's see how this pizza order could look in JSON:
+```json
+{
+    "crust": "original",
+    "toppings": ["cheese", "pepperoni", "garlic"],
+    "status": "cooking"
+}
+```
+In the JSON example above, the keys are the words on the left: toppings, crust, and status. They tell us what attributes the pizza order contains. The values are the parts to the right. These are the actual details of the order.
+
+![JSON Key and Value](images/JSON%20key%20value.jpeg)
+
+If you read a line from left to right, you get a fairly natural English sentence. Taking the first line as an example, we could read it as, "the crust for this pizza is original style." The second line can also be read — in JSON, a value that starts and ends with square brackets [ ] is a list of values. So, we read the second line of the order as, "the toppings for this order are: cheese, pepperoni, and garlic."
+
+Sometimes, you want to use an object as the value for a key. Let's extend our pizza order with customer details so you can see what this might look like:
+```json
+{
+  "crust": "original",
+  "toppings": ["cheese", "pepperoni", "garlic"],
+  "status": "cooking",
+  "customer": {
+    "name": "Brian",
+    "phone": "573-111-1111"
+  }
+}
+```
+In this updated version, we see that a new key, "customer", is added. The value for this key is another set of keys and values that provide details about the customer that placed the order. Cool trick, huh?! This is called an Associative Array. Don't let the technical term intimidate you though - an associative array is just a nested object.
+### JavaScript JSON built-in library
+JavaScript JSON built-in library provides two functions to decode and encode JSON objects – `JSON.parse()` and `JSON.stringify()`.
+1. `JSON.stringify()` returns a JSON string corresponding to a JavaScript object.
+   &nbsp;
+    ```js
+    const obj = {
+        fruit: "Apple",
+        types: ["Small", "Medium", "Large"],
+        quantity: 1000
+    };
+
+    const json_string = JSON.stringify(obj);
+
+    console.log(json_string);
+    ```
+    **Output:**
+    ```json
+    {"fruit":"Apple","types":["Small","Medium","Large"],"quantity":1000}
+    ```
+2. `JSON.parse()` is a safe and fast method of decoding a JSON string as JavaScript object.
+   &nbsp;
+    ```js
+    const json_str = '{"fruit":"Apple","types":["Small","Medium","Large"],"quantity":1000}';
+ 
+    const obj = JSON.parse(json_str);
+
+    console.log(obj);
+    ```
+    **Output:**
+    ```js
+    {
+        fruit: "Apple",
+        types: ["Small", "Medium", "Large"],
+        quantity: 1000
+    }
+    ```
+## Web Storage API
+The Web Storage API in JavaScript is used to store data in the user’s browser. Data is saved as key-value pairs, which makes it easier to work with it.
+### Local Storage
+The storage interface of the Web Storage API provides access to local storage that holds data permanently.
+
+LocalStorage in JavaScript is a property that allows us to save data to be stored in the browser even when a user refreshes or closes a page. The stored data in localStorage has no expiration time. It is supported by all the major web browsers, and we can access it from the browser developer tools.
+
+Here is an example of how we can access the local storage in the console:
+```js
+console.log(window.localStorage);
+```
+**Output:**
+
+![The output from console](images/output%20from%20console.png)
+
+As you can see in the output, the local storage object has a lot of properties and methods that we can use to store, add, and remove data stored in the browser.
+
+As mentioned above, we can access local storage in the developer tools.
+
+Here is an example:
+
+![The output from the dev tools](images/output%20from%20dev%20tools.png)
+
+As you can see, data is stored as key-value pairs. So now we can add, get, or remove data using the properties and methods of local storage.
+
+Here is how we can add some data in local storage using the method `setItem` :
+```js
+window.localStorage.setItem("name", "Mehdi");
+```
+Adding another data:
+```js
+window.localStorage.setItem("action", "Mehdi is writting an article");
+```
+As you can see, the method `setItem` has two arguments: the name of the data, and the data we want to add. You can name it anything you want, I just used `name` here because the data is a name.
+
+Now all this data will be added to the local storage on the user’s browser:
+
+![The output from the dev tools](images/output%20from%20dev%20tools%202.png)
+
+We can get this data and display it on the webpage or the console by using the method `getItem` :
+```js
+console.log(window.localStorage.getItem("name")); 
+//Mehdi
+console.log(window.localStorage.getItem("action"));
+//Mehdi is writting an article
+```
+You can also remove an item or clear all the items from local storage. The example below removes the item `name` :
+```js
+window.localStorage.removeItem("name");
+```
+**Output:**
+
+![The output from the dev tools](images/output%20from%20dev%20tools%203.png)
+
+Or you can remove all items from the storage using the method `clear()` :
+```js
+localStorage.clear();
+```
+### Session Storage
+The storage interface of the Web Storage API also provides access to the session storage object which stores data for the current page session, not permanently as local storage. Once the user closes the page, saved data will be lost, it is never transferred to the server. It does the same thing as local storage, the only difference is that when the user closes the browser data will be lost.
+
+Session storage also has some methods and properties through which data items can be set, retrieved, and removed.
+
+We can also access session storage in the developer tools:
+
+![Session storage](images/Session%20storage.png)
+
+Here is how we can add some data in session storage using the method `setItem` :
+```js
+window.sessionStorage.setItem("name" , "John Doe");
+```
+Get the item using in the console for example:
+```js
+console.log(sessionStorage.getItem("name"));
+//John Doe
+```
+Remove the item:
+```js
+sessionStorage.removeItem("name");
+```
+All other methods and properties of local storage can be applied to session storage.
+***
+### Todo App Local Storage Implementation
+### Exercise 18:
+1. To be done
