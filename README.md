@@ -101,7 +101,6 @@ let elementArray = Array.from(document.querySelectorAll("div"));
 2. Write code to access the **Create** button element using `document.querySelector()`
 3. Log this element using `console.log()`
 
-&nbsp;
 The elements returned by `document.querySelector()` have the same properties as a normal HTML element. You can get access to their css styles, for example:
 ```js
 let myElement = document.querySelector("#myElement");
@@ -181,13 +180,13 @@ paragraph.innerText = "How are you?"; // now we can see the text displaying on t
 &nbsp;
 ### Exercise 6:
 1. Create a function `generateTodoDOM` which will take one parameter `todo`
-2. Create a `label` element and store it into `todoEl` variable using `document.createElement('label')`
-3. Similarly create a `div` element and store it into `containerEl`
-4. Now create a `span` element and store it into `todoText`
+2. Create a `label` element and store it in the `todoEl` variable using `document.createElement('label')`
+3. Similarly create a `div` element and store it in the variable `containerEl`
+4. Now create a `span` element and store it in `todoText`
 5. Assign `todo` value to `todoText` using `textContent` property
 6. Once `todoText` has been assigned `todo` value, append it to `containerEl` using `.appendChild()`
 7. Add `'list-item'` class to `todoEl` and `'list-item__container'` class to `containerEl` using `.classList.add()`
-   - **Note:** While it's really easy to change styles directly on elements using the `style` property, it is not usually a good idea to mix JavaScript and CSS. To solve this, we can use the `.classList.add()` or `.classList.remove()` property to set or remove the class for an element instead of changing its styles directly
+**Note:** While it's really easy to change styles directly on elements using the `style` property, it is usually not a good idea to mix JavaScript and CSS. To solve this, we can use the `.classList.add()` or `.classList.remove()` property to set or remove the class for an element instead of changing its styles directly
 8. Append `containerEl` to `todoEl` using `.appendChild()` 
 9.  Finally return `todoEl`
 
@@ -210,7 +209,7 @@ const generateTodoDOM = (todo) => {
     return todoEl
 }
 ```
-&nbsp;
+
 In **Exercise 6** we have created a function called `generateTodoDOM` which takes a todo and creates HTML elements with some classes for the respective todo. Although most of the work is done but we still can not see any todo listed on the screen. This is normal since we have not appended any of these elements to **DOM**.
 ### Exercise 7:
 1. Create a function `renderTodos` which will take one parameter an array of `todos`
