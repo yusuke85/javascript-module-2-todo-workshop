@@ -4,29 +4,29 @@
 * Fork and Clone this repo.
 ## Table of contents
 - **[Part-1 JavaScript in the browser](#part-1-javascript-in-the-browser)**
-  - [Node.js vs Browser](#nodejs-vs-browser)
+  - [Node.js versus browser](#nodejs-vs-browser)
   - [The DOM](#the-dom)
   - [Attach events to DOM elements](#attach-events-to-dom-elements)
-  - [Create and Manipulate DOM elements](#create-and-manipulate-dom-elements)
+  - [Create and manipulate DOM elements](#create-and-manipulate-dom-elements)
 - **[Part-2 Objects in JavaScript](#part-2-objects-in-javascript)**
-- [Object Basics](#object-basics)
-- [Dot notation](#dot-notation)
-- [Bracket notation](#bracket-notation)
-- [Setting object members](#setting-object-members)
-- [What is "this"?](#what-is-this)
-- [Object built-in methods](#object-built-in-methods)
-- [Loop through an Object](#loop-through-an-object)
+  - [Object basics](#object-basics)
+  - [Dot notation](#dot-notation)
+  - [Bracket notation](#bracket-notation)
+  - [Setting object members](#setting-object-members)
+  - [What is "this"?](#what-is-this)
+  - [Object built-in methods](#object-built-in-methods)
+  - [Loop through an object](#loop-through-an-object)
 - **[Part-3 Introduction to APIs](#part-3-introduction-to-apis)**
-- [A Frame of Reference](#a-frame-of-reference)
-- [What an API is and Why it's valuable](#what-an-api-is-and-why-its-valuable)
-- [How an API is used](#how-an-api-is-used)
-- [Representing Data](#representing-data)
-- [JSON](#json)
-- [JavaScript JSON built-in library](#javascript-json-built-in-library)
-- [Web Storage API](#web-storage-api)
-- [Local Storage](#local-storage)
-- [Session Storage](#session-storage)
-- [Todo App Local Storage Implementation](#todo-app-local-storage-implementation)
+  - [A frame of reference](#a-frame-of-reference)
+  - [What is an API and why is it valuable](#what-an-api-is-and-why-its-valuable)
+  - [How to use an API](#how-an-api-is-used)
+  - [Representing data](#representing-data)
+  - [JSON](#json)
+  - [JavaScript JSON built-in library](#javascript-json-built-in-library)
+  - [Web Storage API](#web-storage-api)
+  - [Local Storage](#local-storage)
+  - [Session Storage](#session-storage)
+  - [Todo App Local Storage Implementation](#todo-app-local-storage-implementation)
 ## Part-1 JavaScript in the browser
 JavaScript is a language which can run in different environments. For few weeks we have been working on a black screen which is **NodeJS**, a runtime environment, which has access to some specific resources such as file system/hard drive, network etc. But JavaScript was not meant to run only in NodeJS environment using `console.log`. It was meant to make web pages dynamic. Lots of websites are powered by JavaScript today, and some (like Facebook) cannot function at all without it. It's become that important to the look and feel of the website.
 
@@ -38,7 +38,7 @@ Today we will learn how to combine all this JavaScript knowledge with HTML and C
 - Use event listeners to respond to events that happen on the DOM
 - Create DOM elements using JavaScript and add them to the DOM
 - Manipulate DOM elements using JavaScript to change their properties
-### Node.js vs Browser
+### Node.js versus browser
 Both the browser and Node.js use JavaScript as their programming language.
 
 Building apps that run in the browser is a completely different thing than building a Node.js application.
