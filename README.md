@@ -173,11 +173,11 @@ myElement.appendChild(paragraph); // now the element is added to our view, but i
 `document.createElement()` accepts as an input any element type. For example: `document.createElement("article")` will create a new article element.
 
 You can then change the text displayed inside an element by using the `textContent` or `innerText` property:
-&nbsp;
+
 ```js
 paragraph.innerText = "How are you?"; // now we can see the text displaying on the screen
 ```
-&nbsp;
+
 ### Exercise 6:
 1. Create a function `generateTodoDOM` which will take one parameter `todo`
 2. Create a `label` element and store it in the `todoEl` variable using `document.createElement('label')`
