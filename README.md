@@ -5,7 +5,7 @@
 ## Table of contents
 - **[Part-1 JavaScript in the browser](#part-1-javascript-in-the-browser)**
   - [Node.js versus browser](#nodejs-vs-browser)
-  - [The DOM](#the-dom)
+  - [The Document Object Model](#the-dom)
   - [Attach events to DOM elements](#attach-events-to-dom-elements)
   - [Create and manipulate DOM elements](#create-and-manipulate-dom-elements)
 - **[Part-2 Objects in JavaScript](#part-2-objects-in-javascript)**
@@ -28,11 +28,11 @@
   - [Session Storage](#session-storage)
   - [Todo App Local Storage Implementation](#todo-app-local-storage-implementation)
 ## Part-1 JavaScript in the browser
-JavaScript is a language which can run in different environments. For few weeks we have been working on a black screen which is **NodeJS**, a runtime environment, which has access to some specific resources such as file system/hard drive, network etc. But JavaScript was not meant to run only in NodeJS environment using `console.log`. It was meant to make web pages dynamic. Lots of websites are powered by JavaScript today, and some (like Facebook) cannot function at all without it. It's become that important to the look and feel of the website.
+JavaScript is a language that can run in different environments. The first weeks of the JavaScript module, we have been working on a black screen which is **NodeJS**. NodeJS is a runtime environment, and has access to some specific resources such as file system/hard drive, network etc. But JavaScript is not meant to run only in the NodeJS environment using `console.log`. It is meant to make webpages dynamic. Lots of websites are powered by JavaScript today, and some (like Facebook) cannot function at all without it because it is so important for the look and feel of the website.
 
-Today we will learn how to combine all this JavaScript knowledge with HTML and CSS in a browser, changing elements dynamically from user actions.
+Today we will learn how to combine all this JavaScript knowledge with HTML and CSS in a browser. With user actions we will be changing elements dynamically.
 #### By the end of this section students should be able to:
-- Differences between Node.js and the Browser
+- Differentiate between Node.js and the browser
 - Define what the DOM is and what it does
 - Use query selectors to retrieve elements from the DOM
 - Use event listeners to respond to events that happen on the DOM
