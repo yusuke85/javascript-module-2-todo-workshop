@@ -2,12 +2,12 @@
 
 ## Getting started
 * Fork and Clone this repo.
-## Table of content
+## Table of contents
 - **[Part-1 JavaScript in the browser](#part-1-javascript-in-the-browser)**
-- [Node.js vs Browser](#nodejs-vs-browser)
-- [The DOM](#the-dom)
-- [Attach events to DOM elements](#attach-events-to-dom-elements)
-- [Create and Manipulate DOM elements](#create-and-manipulate-dom-elements)
+  - [Node.js vs Browser](#nodejs-vs-browser)
+  - [The DOM](#the-dom)
+  - [Attach events to DOM elements](#attach-events-to-dom-elements)
+  - [Create and Manipulate DOM elements](#create-and-manipulate-dom-elements)
 - **[Part-2 Objects in JavaScript](#part-2-objects-in-javascript)**
 - [Object Basics](#object-basics)
 - [Dot notation](#dot-notation)
