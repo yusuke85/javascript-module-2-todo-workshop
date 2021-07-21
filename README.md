@@ -38,7 +38,7 @@ Today we will learn how to combine all this JavaScript knowledge with HTML and C
 - Use event listeners to respond to events that happen on the DOM
 - Create DOM elements using JavaScript and add them to the DOM
 - Manipulate DOM elements using JavaScript to change their properties
-### Node.js versus browser
+### Node.js vs Browser
 Both the browser and Node.js use JavaScript as their programming language.
 
 Building apps that run in the browser is a completely different thing than building a Node.js application.
