@@ -28,31 +28,26 @@
   - [Session Storage](#session-storage)
   - [Todo App Local Storage Implementation](#todo-app-local-storage-implementation)
 ## Part-1 JavaScript in the browser
-JavaScript is a language that can run in different environments. The first weeks of the JavaScript module, we have been working on a black screen which is **NodeJS**. NodeJS is a runtime environment, and has access to some specific resources such as file system/hard drive, network etc. But JavaScript is not meant to run only in the NodeJS environment using `console.log`. It is meant to make webpages dynamic. Lots of websites are powered by JavaScript today, and some (like Facebook) cannot function at all without it because it is so important for the look and feel of the website.
+JavaScript is a language that can run in different environments. The first weeks of the JavaScript module, we have been working in the terminal. This works through **Node.js**. Node.js is a runtime environment that has access to some specific resources such as file system/hard drive, network etc. But JavaScript is not meant to run only in the Node.js environment using `console.log`. It is meant to make webpages dynamic. Lots of websites are powered by JavaScript today, and some (like Facebook) cannot function at all without it because it is so important for the look and feel of the website.
 
 Today we will learn how to combine all this JavaScript knowledge with HTML and CSS in a browser. With user actions we will be changing elements dynamically.
 #### By the end of this section students should be able to:
 - Differentiate between Node.js and the browser
-- Define what the DOM is and what it does
+- Define what the Document Object Model (DOM) is and what it does
 - Use query selectors to retrieve elements from the DOM
-- Use event listeners to respond to events that happen on the DOM
-- Create DOM elements using JavaScript and add them to the DOM
+- Use event listeners to respond to events that happen in the DOM
+- Create DOM elements using JavaScript and add these to the DOM
 - Manipulate DOM elements using JavaScript to change their properties
 ### Node.js vs Browser
-Both the browser and Node.js use JavaScript as their programming language.
+Both the browser and Node.js use JavaScript as their programming language. But building apps that run in the browser is a completely different thing from building a Node.js application. Despite the fact that both useJavaScript, there are some key differences.
 
-Building apps that run in the browser is a completely different thing than building a Node.js application.
-
-Despite the fact that it's always JavaScript, there are some key differences that make the experience radically different.
-
-1. **Full user-level system access.** This is one of the most exciting things about NodeJS. Unlike the browser where Javascript runs in **an isolated environment in which potentially unsafe software code can execute** without affecting network resources or local applications. Whereas NodeJS has full access to the system like any other computer application. This means you can read and write directly to/from the file system/ hard drive, have unrestricted access to the network, can execute software and more. This means writing full desktop software is possible with node.js even including a UI (user interface) through modules like electron.
+1. **Full user-level system access.** This is one of the most exciting things about Node.js. Unlike the browser where Javascript runs in **an isolated environment in which potentially unsafe software code can execute** without affecting network resources or local applications. Whereas NodeJS has full access to the system like any other computer application. This means you can read and write directly to/from the file system/ hard drive, have unrestricted access to the network, can execute software and more. This means writing full desktop software is possible with node.js even including a UI (user interface) through modules like electron.
 &nbsp;
-2. Both NodeJS and Browser have some things in common such as `console.log()`. But in the browser, most of the time what you will be doing is interacting with the **DOM** which does not exist in NodeJS.
+2. Node.js and the browser have some things in common, for example `console.log()`. But in the browser, most of the time you will be interacting with the **DOM** (Document Object Model) which does not exist in Node.js.
 ### The DOM
-Your webpages are made up of a bunch of HTML elements, nested within each other (parents and children). But JavaScript doesn't know about any of that.
-Thankfully, in JavaScript we have access to this "DOM" object (Document Object Model) which is actually a representation of our webpage that JavaScript can work with.
+Your webpages are made up of a bunch of HTML elements, nested within each other (parent and children elements), but that has nothing to do with JavaScript. In JavaScript, we have access to the Document Object Model (usually called DOM) that is actually a representation of our webpage that JavaScript can work with.
 
-Here is an example of how the DOM might look like:
+Here is an example of a DOM:
 
 ```html
 <!doctype html>
@@ -79,40 +74,41 @@ But how can we combine HTML and JavaScript? The `<script>` tag allows us to incl
     alert("hello!");
 </script>
 ```
-Such a script will run as soon as its `<script>` tag is encountered while the browser reads the HTML. This page will pop up a dialog when opened—the alert function resembles prompt, in that it pops up a little window, only shows a message.
+This JavaScript script will run as soon as its `<script>` tag is encountered when the browser reads the HTML. This page will pop up a dialog when opened because there is an alert function that produces a message.
 
-Including large programs directly in HTML documents is often impractical. The `<script>` tag can be given an src attribute to fetch a script file (a text file containing a JavaScript program) from a URL.
+Including large programs directly in HTML documents is not practical. The `<script>` tag can be given a `src` (source) attribute to fetch a script file (this is a file containing a JavaScript program) from a URL.
 ```html
 <script src="scripts/script.js"></script>
 ```
-The script.js file includes a line alert("hello!");, and the result is exactly the same.
+The source is a folder called `scripts` and the file `script.js` is in that folder. The script.js file includes a line alert ("hello!"), and the result of this code is exactly the same as using the JavaScript inside the HTML.
+
 ### Exercise 1:
-1. Look the file `index.html` and `script.js` in the folder ***scripts***
-2. Open `index.html` with the Visual Studio Live Server and See how the alert appears
-3. Right a name in the input `Something to do` and click **Create** button, right know you don't have to understand the code, but, what do you think the code is doing?
+1. Look for the files `index.html` and `script.js`
+2. Open `index.html` with the Visual Studio Live Server and see how the alert appears
+3. Write a name in the input field `Something to do` and click the **Create** button. Right know you don't have to understand the code, but what do you think the code is doing?
 ### Access DOM elements
 The DOM offers a lot of useful functions we can use to find elements on the page. Here are some we'll be using today:
 ```js
 document.querySelector("#mainHeader");
 document.querySelectorAll("p");
 ```
-Both `.querySelector()` and `.querySelectorAll()` accept a CSS selector as an input. `.querySelector()` selects only the first element it finds, `.querySelectorAll()` selects all elements (it returns a NodeList, which you can think of as being similar to an array; it is an ordered sequence of DOM elements which you can loop through like with an array. The difference is that many common array methods like `.map` or `.concat` can't be used on a NodeList. To turn a NodeList into an array, you can use `Array.from`, e.g. 
+Both `.querySelector()` and `.querySelectorAll()` accept a CSS selector as an input. The `.querySelector()` selects only the first element it finds with the given selector. The `.querySelectorAll()` selects all elements with that selector and returns a NodeList. You can think of a NodeList as being similar to an array: it is an ordered sequence of DOM elements that you can loop through like you do with an array. The difference is that many common array methods like `.map` or `.concat` can't be used on a NodeList. To turn a NodeList into an array, you can use `Array.from`, e.g. 
 ```js
 let elementArray = Array.from(document.querySelectorAll("div"));
 ```
 ### Exercise 2:
 1. Delete all the existing code in `script.js` in the folder ***scripts***
-2. Write code to access **Create** button element using `document.querySelector()`
+2. Write code to access the **Create** button element using `document.querySelector()`
 3. Log this element using `console.log()`
 
 &nbsp;
-The elements returned by `document.querySelector()` have the same properties as a normal HTML element: for example, you can get access to their css styles.
+The elements returned by `document.querySelector()` have the same properties as a normal HTML element. You can get access to their css styles, for example:
 ```js
 let myElement = document.querySelector("#myElement");
 myElement.style.backgroundColor = "red";
 ```
 ### Exercise 3:
-1. Change background color of **Create** button to *green* using `.style` property
+1. Change the background color of the **Create** button to *green* using the `.style` property
 ### Attach events to DOM elements
 Once you retrieve an element using `.querySelector()`, you can attach an event to it. An event is any action that can be performed on that element. For now, we will just use the click event:
 ```js
@@ -123,7 +119,7 @@ function alertSomething() {
   alert("Something");
 }
 ```
-You will notice in the example that we passed a second argument to `.addEventListener()`. That second argument is the function that we want to invoke when that event has happened.
+You will notice in the example that we passed a second argument to `.addEventListener()`. That second argument is the function that we want to invoke when that event happens.
 ### Exercise 4:
 1. Delete all the existing code in `script.js` in the folder ***scripts***
 2. Write code to access the form with id `#new-todo` using `document.querySelector()`
@@ -138,7 +134,7 @@ document.querySelector('#new-todo').addEventListener('submit', (e) => {
 ```
 ### Exercise 5:
 1. Create an empty array called `todos`
-2. In the next line create a function called `createTodo` which takes one paramter named `text`.
+2. In the next line create a function called `createTodo` which takes one parameter named `text`.
 3. This function should add the value of `text` parameter to the `todos` array using `.push()`
 4. Modify the event created in **Exercise 4** to validate `text` and then call `createTodo` whenever the form is submitted.
    - **Hint:** Use `createTodo` function inside second parameter of `addEventListener()`
@@ -167,17 +163,17 @@ document.querySelector('#new-todo').addEventListener('submit', (e) => {
 })
 ```
 ### Create and Manipulate DOM elements
-Using the `document`, you can also create new elements. These elements will not appear until you append them as a child of another element though
-&nbsp;
+Using the `document`, you can also create new elements. These elements will not appear until you append them as a child of another element.
+
 ```js
-let paragraph = document.createElement("p"); // here we're just creating it, element is not visible yet
+let paragraph = document.createElement("p"); // we're just creating an element, it is not visible yet
 myElement.appendChild(paragraph); // now the element is added to our view, but it's empty
 ```
-&nbsp;
 
-`document.createElement()` accepts as an input any element type. So for example `document.createElement("article")` will create a new article element.
 
-You can then change the text displayed inside elements using the `textContent` or `innerText` property:
+`document.createElement()` accepts as an input any element type. For example: `document.createElement("article")` will create a new article element.
+
+You can then change the text displayed inside an element by using the `textContent` or `innerText` property:
 &nbsp;
 ```js
 paragraph.innerText = "How are you?"; // now we can see the text displaying on the screen
