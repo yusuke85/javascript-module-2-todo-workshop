@@ -210,14 +210,13 @@ const generateTodoDOM = (todo) => {
 }
 ```
 
-In **Exercise 6** we have created a function called `generateTodoDOM` which takes a todo and creates HTML elements with some classes for the respective todo. Although most of the work is done but we still can not see any todo listed on the screen. This is normal since we have not appended any of these elements to **DOM**.
+In **Exercise 6** we have created a function called `generateTodoDOM` which takes a todo and creates HTML elements with some classes for the respective todo. Although most of the work is done, we still cannot see any todo listed on the screen. This is normal since we have not **appended** any of these elements to the  **DOM**.
 ### Exercise 7:
-1. Create a function `renderTodos` which will take one parameter an array of `todos`
-2. Write code to access `div` with id `'todos'` and store it into `todoList` variable
-3. Remove everything inside this `todoList` using `innerHTML` property
-   - **Hint:**: Otherwise we will append items multiple times.
-4. Create DOM elements for all items of `todos` array by using `forEach` method and `generateTodoDOM` function and append return value of `generateTodoDOM` to `todoList` using `.appendChild()`
-5. Use `renderTodos` function instead of `console.log(todos)` in step 6 of **Exercise 5**.
+1. Create a function `renderTodos` that will take one parameter: an array of `todos`
+2. Write code to access a `div` with id `'todos'` and store it into a `todoList` variable
+3. Remove everything inside this `todoList` using the `innerHTML` property  (**Hint:** Otherwise we will append items multiple times)
+4. Create DOM elements for all items of the `todos` array by using the `forEach()` method and `generateTodoDOM` function, and append the return value of `generateTodoDOM` to `todoList` using `.appendChild()`
+5. Use the `renderTodos` function instead of `console.log(todos)` in step 6 of **Exercise 5**.
 
 ```js
 const renderTodos = (todos) => {
@@ -229,18 +228,18 @@ const renderTodos = (todos) => {
     })
 }
 ```
-&nbsp;
+
 Now we will be able to see all todos on the screen. Whenever a new todo will be added, we will call this `renderTodos` function with the `todos` array as an argument.
 
-Lets add a message to the screen when there is no todos to show
+Now let's add a message to the screen when there is no todos to show.
 ### Exercise 8:
-1. Modify `renderTodos` function using conditional statement to check whether `todos` array is empty.
-2. If its not empty then `generateTodoDOM` for each todo and append them to `todoList`
-3. Else create a `p` element and store it into `messageEl` variable.
-    1. Add `'empty-message'` class to `messageEl`  
-    2. Assign `'There are no todos to show'` string to `messageEl` using `textContent`
+1. Modify the `renderTodos` function using a conditional statement to check if the `todos` array is empty.
+2. If it is not empty then `generateTodoDOM` for each todo and append them to `todoList`
+3. Else: if it is empty, create a `p` element and store it into the `messageEl` variable.
+    1. Add a `'empty-message'` class to `messageEl`  
+    2. Assign the `'There are no todos to show'` string to `messageEl` using `textContent`
     3. Append `messageEl` to `todoList`
-4. Invoke `renderTodos` function with `todos` array as an argument at the end of `script.js` file
+4. Invoke the `renderTodos` function with the `todos` array as an argument at the end of `script.js` file
 
 ```js
 const renderTodos = (todos) => {
@@ -262,11 +261,11 @@ const renderTodos = (todos) => {
 renderTodos(todos);
 ```
 ### Delete todos
-Now that we are able to create new todo items and add them to `todoList`, Let's create a function to remove todo item from `todoList`
+Now that we are able to create new todo items and add them to `todoList`, let's create a function to remove todo item from `todoList`
 ### Exercise 9:
 1. Create a function called `removeTodo` which will take a parameter `todoEl`
-2. Find the index of this `todoEl` in `todos` array using `.findIndex()` and store the index value into `todoIndex` variable
-3. Check whether `todoIndex > -1`, if true then remove the element from `todos` array using `.splice()`
+2. Find the index of this `todoEl` in the `todos` array using `.findIndex()` and store the index value into the `todoIndex` variable
+3. Check whether `todoIndex > -1`, and if true then remove the element from the `todos` array using `.splice()`
 ```js
 const removeTodo = (todoEl) => {
     const todoIndex = todos.findIndex((todo) => {
@@ -277,8 +276,8 @@ const removeTodo = (todoEl) => {
     }
 }
 ```
-&nbsp;
-Once the `removeTodo` function is created, let's add a delete button with a `click` event to remove todo item from `todoList`
+
+Once the `removeTodo` function is created, let's add a delete button with a `click` event to remove a todo item from `todoList`
 ### Exercise 10:
 1. Modify `generateTodoDOM` function to add a remove button.
 2. Create a `button` element and store it into `removeButton` variable
