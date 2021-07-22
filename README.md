@@ -277,15 +277,15 @@ const removeTodo = (todoEl) => {
 }
 ```
 
-Once the `removeTodo` function is created, let's add a delete button with a `click` event to remove a todo item from `todoList`
+Now that the `removeTodo` function is created, let's add a delete button with a `click` event to remove a todo item from `todoList`
 ### Exercise 10:
-1. Modify `generateTodoDOM` function to add a remove button.
-2. Create a `button` element and store it into `removeButton` variable
-3. Assign `'remove'` string to `removeButton` using `textContent`
+1. Modify the `generateTodoDOM` function to add a remove button.
+2. Create a `button` element and store it in a `removeButton` variable
+3. Assign a `'remove'` string to the `removeButton` using `textContent`
 4. Add `'button'`, `'button--text'` classes to `removeButton`  
-5. Append `removeButton` to `todoEl`
-6. Add a `click` event to `removeButton` using `.addEventListener()` which will invoke `removeTodo` function with `todoText` as an argument.
-7. Invoke `renderTodos` function as well inside the `click` event handler function to update the list of todos on the screen
+5. Append the `removeButton` to `todoEl`
+6. Add a `click` event to the `removeButton` using `.addEventListener()` which will invoke the `removeTodo` function with `todoText` as an argument.
+7. Invoke the `renderTodos` function as well inside the `click` event handler function to update the list of todos on the screen
 
 ```js
 const generateTodoDOM = (todo) => {
@@ -316,22 +316,25 @@ const generateTodoDOM = (todo) => {
 }
 ```
 &nbsp;
+
+---
+
 ## Part-2 Objects in JavaScript
-When you look at the world around you, what do you see? You see objects. In programming, objects are nothing more than representations of things. In this section you will learn how to manage objects, and arrays of objects.
+When you look at the world around you, you see objects that we often call 'things'. In programming, objects are *representations* of things. In this section you will learn how to manage objects and arrays of objects.
 #### By the end of this section students should be able to:
 - Define what an object is in JavaScript
-- Be able to write code that can use an object to store data
-- Be able to write code that changes the properties of an object
-- Be able to write code that can retrieve data from an object
+- Write code that can use an object to store data
+- Write code that changes the properties of an object
+- Write code that can retrieve data from an object
 - Write and call methods inside JavaScript objects
-- Use Objects when contained inside an array
+- Use objects when these are contained inside an array
 - Write code that uses objects built-in methods
 - Write code that can iterate through an object
 ### Object Basics
 ###### [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics#object_basics)
-An object is a collection of related data and/or functionality (which usually consists of several variables and functions — which are called properties and methods when they are inside objects.) Let's work through an example to understand what they look like.
+An object is a collection of related data and/or functionality. An object usually consists of several variables and functions. These variables are called *properties* and the functions are called *methods* when they are inside objects. Let's work through an example to understand what they look like.
 
-As with many things in JavaScript, creating an object often begins with defining and initializing a variable. During this section we will work in `oop.js` file inside `scripts` folder, write the following code and run in the terminal using `node`:
+As with many things in JavaScript, creating an object often begins with defining and initializing a variable. During this section we will work in the `oop.js` file inside the `scripts` folder. In the `oop.js` file, write the following code and run it in the terminal using `node`:
 ```js
 const person = {};
 console.log(person)
@@ -354,7 +357,7 @@ const person = {
   }
 };
 ```
-After adding all this code to `person` object, add the following code below this object and run `oop.js` file in the terminal using `node`:
+After adding all this code to the `person` object, add the following code below this object and run the `oop.js` file in the terminal using `node`:
 ```js
 console.log(person.name)
 console.log(person.name[0])
@@ -363,7 +366,7 @@ console.log(person.interests[1])
 person.bio()
 person.greeting()
 ```
-You have now got some data and functionality inside your object, and are now able to access them with some nice simple syntax!
+You now have some data and functionality inside your object, and are able to access them with some nice simple syntaxes!
 
 So what is going on here? Well, an object is made up of multiple members, each of which has a name (e.g. `name` and `age` above), and a value (e.g. `['Bob', 'Smith']` and `32`). Each name/value pair must be separated by a comma, and the name and value in each case are separated by a colon. The syntax always follows this pattern:
 ```js
@@ -377,9 +380,9 @@ The value of an object member can be pretty much anything — in our person obje
 
 An object like this is referred to as an **object literal** — we've literally written out the object contents as we've come to create it. This is in contrast to objects instantiated from classes, which we'll look at later on.
 
-It is very common to create an object using an object literal when you want to transfer a series of structured, related data items in some manner, for example sending a request to the server to be put into a database. Sending a single object is much more efficient than sending several items individually, and it is easier to work with than an array, when you want to identify individual items by name.
+It is very useful to create an object using an object literal when you want to transfer structured, related data items in some manner, for example sending some data to be put into a database. Sending a single object is much more efficient than sending several items individually, and it is easier to work with than an array, when you want to identify individual items by name.
 ### Dot notation
-Above, you accessed the object's properties and methods using **dot notation**. The object name (person) acts as the **namespace** — it must be entered first to access anything **encapsulated** inside the object. Next you write a dot, then the item you want to access — this can be the name of a simple property, an item of an array property, or a call to one of the object's methods, for example:
+Above, you accessed the object's properties and methods using **dot notation**. The object name (in this case `person`) acts as the **namespace** — it must be entered first to access anything **encapsulated** (= contained) inside the object. Next, you write a dot, and then the item you want to access — this can be the name of a property, an item of an array property, or a call to one of the object's methods, for example:
 ```js
 person.age
 person.interests[1]
@@ -397,7 +400,7 @@ name : {
   last: 'Smith'
 },
 ```
-Here we are effectively creating a **sub-namespace**. This sounds complex, but really it's not — to access these items you just need to chain the extra step onto the end with another dot. Replace previous `console.log()` statements with these and run it in terminal using `node`:
+Here we are effectively creating a **sub-namespace**. This sounds complex, but really it's not — to access these items you just need to chain the extra step onto the end with another dot. Replace previous `console.log()` statements with these and run it in the terminal using `node`:
 ```js
 console.log(person.name.first)
 console.log(person.name.last)
@@ -412,7 +415,7 @@ to
 name.first
 name.last
 ```
-Otherwise your methods will no longer work.
+Otherwise your methods will no longer work. Why do you think this is necessary?
 ### Bracket notation
 There is another way to access object properties — using bracket notation. Instead of using these:
 ```js
@@ -426,7 +429,7 @@ person['name']['first']
 ```
 This looks very similar to how you access the items in an array, and it is basically the same thing — instead of using an index number to select an item, you are using the name associated with each member's value. It is no wonder that objects are sometimes called **associative arrays** — they map strings to values in the same way that arrays map numbers (indices) to values.
 ### Setting object members
-So far we've only looked at retrieving (or **getting**) object members — you can also **set** (update) the value of object members by declaring the member you want to set (using dot or bracket notation), like this:
+So far we've only looked at retrieving (or **getting**) object members. You can also **set** (update) the value of object members by declaring the member you want to set (using dot or bracket notation), like this:
 ```js
 person.age = 45;
 person['name']['last'] = 'Cratchit';
@@ -436,7 +439,7 @@ Try entering the above lines, and then getting the members again to see how they
 console.log(person.age)
 console.log(person['name']['last'])
 ```
-Setting members doesn't just stop at updating the values of existing properties and methods; you can also create completely new members. Try these:
+Setting members doesn't stop at updating the values of existing properties and methods; you can also create completely new members. Try these:
 ```js
 person['eyes'] = 'hazel';
 person.farewell = function() { console.log("Bye everybody!"); }
@@ -466,13 +469,13 @@ Now try saving and running it in terminal using `node`
 
 **Note:** Adding a property to an object using the method above isn't possible with dot notation, which can only accept a literal member name, not a variable value pointing to a name.
 ### What is "this"?
-You may have noticed something slightly strange in our methods. Look at this one for example:
+You may have noticed something slightly strange in our methods. Look at this example:
 ```js
 greeting: function() {
   console.log('Hi! I\'m ' + this.name.first + '.');
 }
 ```
-You are probably wondering what "this" is. The `this` keyword refers to the current object the code is being written inside — so in this case `this` is equivalent to `person`. So why not just write `person` instead? As you'll see in the following section of **Object-oriented JavaScript**, when we start creating constructors and so on, `this` is very useful — it always ensures that the correct values are used when a member's context changes (for example, two different person object instances may have different names, but we want to use their own name when saying their greeting).
+You are probably wondering what "this" is. The `this` keyword refers to the current object where the code is being written inside — so in this case `this` is equivalent to `person`. So why not just write `person` instead? As you'll see in the following section of **Object-oriented JavaScript**, when we start creating constructors and so on, `this` is very useful — it always ensures that the correct values are used when a member's context changes (for example, two different person object instances may have different names, but we want to use their own name when saying their greeting).
 
 Let's illustrate what we mean with a simplified pair of person objects:
 ```js
@@ -490,7 +493,7 @@ const person2 = {
   }
 }
 ```
-In this case, `person1.greeting()` outputs **"Hi! I'm Chris."**; `person2.greeting()` on the other hand outputs **"Hi! I'm Deepti."**, even though the method's code is exactly the same in each case. As we said earlier, `this` is equal to the object the code is inside — this isn't hugely useful when you are writing out object literals by hand, but it really comes into its own when you are dynamically generating objects (for example using constructors). It will all become clearer later on.
+In this case, `person1.greeting()` outputs **"Hi! I'm Chris."**; `person2.greeting()` on the other hand outputs **"Hi! I'm Deepti."**, even though the method's code is exactly the same in each case. As we said earlier, `this` is equal to the object the code is inside. This isn't very useful when you are writing out object literals by hand, but when you are dynamically generating objects (for example using constructors) it is extremely useful. It will all become clearer later on.
 ### Object built-in methods
 Since we started JavaScript, we have used `console.log()` to print things to our console.
 
