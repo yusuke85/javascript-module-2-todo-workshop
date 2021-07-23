@@ -136,7 +136,7 @@ document.querySelector('#new-todo').addEventListener('submit', (e) => {
 2. In the next line create a function called `createTodo` which takes one parameter named `text`.
 3. This function should add the value of `text` parameter to the `todos` array using `.push()`
 4. Modify the event created in **Exercise 4** to validate `text` and then call `createTodo` whenever the form is submitted.
-   - **Hint:** Use `createTodo` function inside second parameter of `addEventListener()`
+   - **Hint:** Use `createTodo` function inside callback function of `addEventListener()`
 5. Clear the value of the input `Something to do` once a new todo is created
 6. Log the todos array.
 
