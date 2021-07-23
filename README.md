@@ -39,7 +39,7 @@ Today we will learn how to combine all this JavaScript knowledge with HTML and C
 - Create DOM elements using JavaScript and add these to the DOM
 - Manipulate DOM elements using JavaScript to change their properties
 ### Node.js vs Browser
-Both the browser and Node.js use JavaScript as their programming language. But building apps that run in the browser is a completely different thing from building a Node.js application. Despite the fact that both useJavaScript, there are some key differences.
+Both the browser and Node.js use JavaScript as their programming language. But building apps that run in the browser is a completely different thing from building a Node.js application. Despite the fact that both use JavaScript, there are some key differences.
 
 1. **Full user-level system access.** This is one of the most exciting things about Node.js. Unlike the browser where Javascript runs in **an isolated environment in which potentially unsafe software code can execute** without affecting network resources or local applications. Whereas NodeJS has full access to the system like any other computer application. This means you can read and write directly to/from the file system/ hard drive, have unrestricted access to the network, can execute software and more. This means writing full desktop software is possible with node.js even including a UI (user interface) through modules like electron.
 &nbsp;
